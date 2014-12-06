@@ -1,0 +1,39 @@
+<RCC>
+    <qresource prefix="/icon">
+        <file>ICO/AllRepeat.png</file>
+        <file>ICO/Close.png</file>
+        <file>ICO/Mini.png</file>
+        <file>ICO/Mute.png</file>
+        <file>ICO/Next.png</file>
+        <file>ICO/Open.png</file>
+        <file>ICO/Order.png</file>
+        <file>ICO/Pause.png</file>
+        <file>ICO/Play.png</file>
+        <file>ICO/PlayList.png</file>
+        <file>ICO/Pre.png</file>
+        <file>ICO/Repeat.png</file>
+        <file>ICO/ShadowPlayer.ico</file>
+        <file>ICO/Shuffle.png</file>
+        <file>ICO/Single.png</file>
+        <file>ICO/Stop.png</file>
+        <file>ICO/Vol.png</file>
+        <file>ICO/CSkin.png</file>
+        <file>ICO/Loop.png</file>
+        <file>ICO/LoopA.png</file>
+        <file>ICO/LoopAB.png</file>
+        <file>ICO/MiniPlayer.png</file>
+        <file>ICO/61Player.png</file>
+        <file>ICO/pl_floderAdd.png</file>
+        <file>ICO/pl_Add.png</file>
+        <file>ICO/pl_Delete.png</file>
+        <file>ICO/pl_clear.png</file>
+        <file>ICO/pl_Insert.png</file>
+    </qresource>
+    <qresource prefix="/image">
+        <file>image/ShadowPlayer.png</file>
+        <file>image/Skin1.jpg</file>
+        <file>image/OSD.png</file>
+        <file>image/menu-np.png</file>
+        <file>image/music.png</file>
+    </qresource>
+</RCC>

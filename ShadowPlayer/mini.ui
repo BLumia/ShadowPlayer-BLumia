@@ -1,0 +1,559 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>miniForm</class>
+ <widget class="QWidget" name="miniForm">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>256</width>
+    <height>80</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MiniPlayer</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+	font-family: &quot;Arial&quot;, &quot;宋体&quot;, &quot;Segoe UI&quot;, &quot;微软雅黑&quot;;
+	color: black;
+}
+
+QLabel#curTimeLabel {
+	color: white;
+	font-family: &quot;Segoe UI&quot;;
+	font-size :20px;
+}
+
+QLabel#totalTimeLabel {
+	color: white;
+	font-family: &quot;Segoe UI&quot;;
+	font-size :20px;
+}
+
+QLabel#lrcLabel_1 {
+	color: rgba(0, 0, 0, 128);
+}
+
+QLabel#lrcLabel_4 {
+	font-weight: 500;
+	color: rgb(85, 0, 255);
+}
+
+QLabel#lrcLabel_7 {
+	color: rgba(0, 0, 0, 128);
+}
+
+/*以上为字体设置*/
+
+QToolTip {
+    opacity: 220;
+}
+
+QSlider::groove:horizontal {
+	border: 1px solid grey;
+	border-radius: 3px;
+	height: 4px;
+	margin: 0px 0;
+}
+
+QSlider::handle:horizontal {
+/*
+	border-radius: 3px;
+	margin: -5px -5px -5px -5px;
+	left: 5px; right: 5px;
+*/
+}
+
+QSlider::handle:horizontal:hover {
+/*
+	border-radius: 3px;
+	margin: -5px -5px -5px -5px;
+	left: 5px; right: 5px;
+*/
+}
+
+QSlider::sub-page:horizontal {
+	border-radius: 3px;
+	background: rgb(69, 251, 255);
+}
+
+QSlider::groove:vertical {
+	border: 1px solid grey;
+	border-radius: 3px;
+	width: 4px;
+	margin: 0px 0;
+} 
+
+QSlider::handle:vertical {
+	border-radius: 3px;
+	border: 0px solid #5c5c5c;
+	background: rgb(69, 251, 255);
+	margin: -5px -5px -5px -5px;
+	top: 5px; bottom: 5px;
+}
+
+QSlider::handle:vertical:hover {
+	border-radius: 3px;
+	border: 0px solid #5c5c5c;
+	background: rgb(75, 251, 255);
+	margin: -5px -5px -5px -5px;
+	top: 5px; bottom: 5px;
+}
+
+QSlider::add-page:vertical {
+	border-radius: 3px;
+	background: rgb(69, 251, 255);
+}
+
+QSlider::add-page {
+/*空白部分填充用，以免透明点不着*/
+	background: rgba(69, 251, 255, 3);
+}
+
+QLabel {
+	background: transparent;
+}
+
+QLabel:hover {
+	/*background: rgba(255, 255, 255, 180);*/
+}
+
+QLabel#tagLabel {
+	color: white;
+	font-family: &quot;Segoe UI&quot;, &quot;宋体&quot;;
+	background: rgba(255, 255, 255, 0);
+}
+
+QLabel#coverLabel{
+	border: 1px solid grey;
+}
+
+QLabel#titleLabel {
+/*当前正在播放之标题框的白字*/
+	color: white;
+	font-family: &quot;Segoe UI&quot;, &quot;宋体&quot;;
+	background: rgba(255, 255, 255, 0);
+}
+
+QGroupBox {
+/*GroupBox的样式表不知道怎么改，总之先把下面透明度改成0再说*/
+	background: rgba(255, 255, 255, 0);
+}
+
+QGroupBox#eqGroupBox {
+	background: qlineargradient(spread:pad, x1:1, y1:0, x2:1, y2:1, stop:0 rgba(255, 255, 255, 150), stop:1 rgba(255, 255, 255, 70));
+}
+
+QGroupBox {
+	border: 0px solid white;
+	border-radius: 5px;
+	margin-top: 0ex; /* leave space at the top for the title */
+}
+
+QProgressBar{
+/*进度条外框*/
+	border-radius: 0px;
+	background: transparent;
+	text-align: center;
+}
+
+QProgressBar::chunk {
+/*进度条内容*/
+	border-radius: 0px;
+/*border: 1px solid black;*/
+	background: qlineargradient(spread:pad, x1:1, y1:1, x2:1, y2:0, stop:0 rgba(85, 130, 255, 255), stop:1 rgba(170, 255, 236, 255));
+}
+
+QProgressBar:horizontal {
+	border-radius: 0px;
+	border: 1px solid grey;
+	background: transparent;
+	text-align: center;
+}
+
+QProgressBar::chunk:horizontal {
+/*水平进度条内容*/
+	border-radius: 0px;
+	background: rgb(69, 251, 255);
+}
+
+QProgressBar#leftdB:horizontal {
+	border-radius: 0px;
+	border: 1px solid grey;
+	background: rgba(255, 255, 255, 120);
+	text-align: center;
+}
+
+QProgressBar#leftdB::chunk:horizontal {
+	border-radius: 0px;
+	background: rgb(69, 251, 255);
+}
+
+QProgressBar#rightdB:horizontal {
+	border-radius: 0px;
+	border: 1px solid grey;
+	background: rgba(255, 255, 255, 120);
+	text-align: center;
+}
+
+QProgressBar#rightdB::chunk:horizontal {
+	border-radius: 0px;
+	background: rgb(69, 251, 255);
+}
+
+QPushButton {
+	border: 0px solid grey;
+	background-color: rgba(255, 255, 255, 170);
+	padding: -8px -8px;
+}
+
+QPushButton:hover {
+	background-color: rgba(255, 255, 255, 220);
+}
+
+QPushButton:pressed {
+	background-color: rgba(255, 255, 255, 250);
+}
+
+QPushButton#closeButton {
+	color: white;
+	background-color: rgb(230, 0, 0);
+}
+
+QPushButton#closeButton:hover {
+	background-color: rgb(255, 0, 0);
+}
+
+QPushButton#mainPlayerBtn {
+/*退出迷你模式按钮*/
+	color: white;
+	background-color: transparent;
+	border-width: 0px;
+}
+
+QPushButton#mainPlayerBtn:hover {
+	color: white;
+	background-color: rgb(0, 85, 255);
+	border-width: 0px;
+}
+
+QPushButton#setSkinButton:hover {
+	background-color: rgb(0, 85, 255);
+}
+
+QPushButton#setSkinButton {
+	background-color: transparent;
+}
+
+QPushButton#playBtn {
+/*播放按钮*/
+	background-color: transparent;
+}
+
+QPushButton#playBtn:hover {
+	background-color: rgba(0, 85, 255, 120);
+}
+
+QPushButton#stopBtn {
+/*停止按钮*/
+	background-color: transparent;
+}
+
+QPushButton#stopBtn:hover {
+	background-color: rgba(0, 85, 255, 120);
+}
+
+QPushButton#openButton {
+	background-color: transparent;
+}
+
+QPushButton#openButton:hover {
+	background-color: rgba(0, 85, 255, 120);
+}
+
+QPushButton#muteBtn {
+/*音量按钮*/
+	background-color: transparent;
+}
+
+QPushButton#muteBtn:hover {
+	background-color: rgba(0, 85, 255, 120);
+}
+
+QPushButton#playModeBtn {
+/*模式按钮*/
+	background-color: transparent;
+}
+
+QPushButton#playModeBtn:hover {
+	background-color: rgba(0, 85, 255, 120);
+}
+
+QPushButton#playPrevBtn {
+/*上曲按钮*/
+	background-color: transparent;
+}
+
+QPushButton#playPrevBtn:hover {
+	background-color: rgba(0, 85, 255, 120);
+}
+
+QPushButton#playNextBtn {
+/*下曲按钮*/
+	background-color: transparent;
+}
+
+QPushButton#playNextBtn:hover {
+	background-color: rgba(0, 85, 255, 120);
+}
+
+QPushButton#playListButton {
+	background-color: transparent;
+}
+
+QPushButton#playListButton:hover {
+	background-color: rgba(0, 85, 255, 120);
+}
+
+</string>
+  </property>
+  <widget class="QLabel" name="titleLabel">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>0</y>
+     <width>156</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 75 11pt &quot;Tahoma&quot;;</string>
+   </property>
+   <property name="text">
+    <string>这里显示曲目~</string>
+   </property>
+   <property name="textFormat">
+    <enum>Qt::AutoText</enum>
+   </property>
+   <property name="scaledContents">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QGroupBox" name="groupBox">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>30</y>
+     <width>250</width>
+     <height>40</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string/>
+   </property>
+   <widget class="QPushButton" name="playBtn">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>0</y>
+      <width>30</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="res.qrc">
+      <normaloff>:/icon/ICO/Play.png</normaloff>:/icon/ICO/Play.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>22</width>
+      <height>22</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="playNextBtn">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>0</y>
+      <width>30</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="res.qrc">
+      <normaloff>:/icon/ICO/Next.png</normaloff>:/icon/ICO/Next.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>22</width>
+      <height>22</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="stopBtn">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>0</y>
+      <width>30</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="res.qrc">
+      <normaloff>:/icon/ICO/Stop.png</normaloff>:/icon/ICO/Stop.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>22</width>
+      <height>22</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="muteBtn">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>0</y>
+      <width>30</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="res.qrc">
+      <normaloff>:/icon/ICO/Mute.png</normaloff>:/icon/ICO/Mute.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>22</width>
+      <height>22</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="playPrevBtn">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>0</y>
+      <width>30</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="icon">
+     <iconset resource="res.qrc">
+      <normaloff>:/icon/ICO/Pre.png</normaloff>:/icon/ICO/Pre.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>22</width>
+      <height>22</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="mainPlayerBtn">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>0</y>
+      <width>30</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="res.qrc">
+      <normaloff>:/icon/ICO/61Player.png</normaloff>:/icon/ICO/61Player.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>22</width>
+      <height>22</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="SPSlider" name="miniuiSlider">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>20</y>
+      <width>170</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>播放进度</string>
+    </property>
+    <property name="maximum">
+     <number>1000</number>
+    </property>
+    <property name="singleStep">
+     <number>0</number>
+    </property>
+    <property name="pageStep">
+     <number>0</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QLabel" name="nowPlayingBackground">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>256</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="res.qrc">:/image/image/menu-np.png</pixmap>
+   </property>
+  </widget>
+  <zorder>nowPlayingBackground</zorder>
+  <zorder>groupBox</zorder>
+  <zorder>titleLabel</zorder>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>SPSlider</class>
+   <extends>QSlider</extends>
+   <header>spslider.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="res.qrc"/>
+ </resources>
+ <connections/>
+</ui>
