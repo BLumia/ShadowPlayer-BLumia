@@ -17,12 +17,19 @@ PlayList::PlayList(Player *player, QWidget *parent) :
     connect(ui->searchEdit, SIGNAL(returnPressed()), this, SLOT(on_searchButton_clicked()));
 
     readFromFile(QCoreApplication::applicationDirPath() + "/PlayList.sdpl");
+
+    finderAnimation = new QPropertyAnimation(ui->finderFlame, "geometry");
+    finderAnimation->setEasingCurve(QEasingCurve::OutCirc);
+    finderAnimation->setDuration(600);
+    finderAnimation->setStartValue(QRect(331, 330, 331, 31));
+    finderAnimation->setEndValue(QRect(0, 330, 331, 31));
 }
 
 PlayList::~PlayList()
 {
     saveToFile(QCoreApplication::applicationDirPath() + "/PlayList.sdpl");
     delete ui;
+    delete finderAnimation;
 }
 
 bool PlayList::fixSuffix(QString fileName)
@@ -651,7 +658,7 @@ void PlayList::on_listOptionButton_clicked()
 
     QMenu menu;
     menu.addAction("[导入]从文件夹导入歌曲" , this ,SLOT(addFromFloderToList()));
-    menu.addAction("[选项]歌曲最短长度过滤选项" , this ,SLOT(setLenFiler()));
+    menu.addAction("[查找]从列表中查找歌曲" , this ,SLOT(showFinder()));
     menu.exec(cur.pos());
 
 }
@@ -676,4 +683,44 @@ void PlayList::on_playListCombo_currentIndexChanged(int index)
 void PlayList::setPlayListCombo(int index){
     ui->playListCombo->setCurrentIndex(index);
     //on_playListCombo_currentIndexChanged(index);
+}
+
+void PlayList::on_fliterOptionButton_clicked()
+{
+    QCursor cur=this->cursor();
+
+    QMenu menu;
+    menu.addAction("[选项]歌曲最短长度过滤选项" , this ,SLOT(setLenFiler()));
+    menu.exec(cur.pos());
+
+}
+
+void PlayList::on_musicOptionButton_clicked()
+{
+    QCursor cur=this->cursor();
+
+    //根据是否选中文件判断是不是需要弹出右键菜单
+    int item = ui->playListTable->currentRow();
+
+    if (item >= 0)//如果在表格上右键（因为重载的右键菜单函数对整个Widget有效所以需要判断,可能有问题）
+    {
+        QMenu menu;
+        menu.addAction("打开歌曲所在文件夹" , this ,SLOT(openFileFloder()));
+        menu.exec(cur.pos());
+    } else {
+        QMessageBox::information(0, "错误了呢", "您还没有选择任何一个条目呢喵\n快快选择一个吧", "忘记了喵~");
+    }
+}
+
+void PlayList::showFinder(){
+    if (ui->finderFlame->x() > 150)
+    {
+        finderAnimation->setStartValue(QRect(331, 330, 331, 31));
+        finderAnimation->setEndValue(QRect(0, 330, 331, 31));
+        finderAnimation->start();
+    } else {
+        finderAnimation->setStartValue(QRect(0, 330, 331, 31));
+        finderAnimation->setEndValue(QRect(331, 330, 331, 31));
+        finderAnimation->start();
+    }
 }

@@ -28,6 +28,7 @@
         <file>ICO/pl_Delete.png</file>
         <file>ICO/pl_clear.png</file>
         <file>ICO/pl_Insert.png</file>
+        <file>ICO/Fliter.png</file>
     </qresource>
     <qresource prefix="/image">
         <file>image/ShadowPlayer.png</file>

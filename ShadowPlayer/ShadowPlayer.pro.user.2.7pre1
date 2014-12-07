@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 2.7.2, 2014-12-06T14:50:54. -->
+<!-- Written by QtCreator 2.7.2, 2014-12-07T13:36:49. -->
 <qtcreator>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
@@ -107,7 +107,7 @@
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
     <value type="QByteArray" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4BuildConfiguration</value>
     <value type="int" key="Qt4ProjectManager.Qt4BuildConfiguration.BuildConfiguration">0</value>
-    <value type="QString" key="Qt4ProjectManager.Qt4BuildConfiguration.BuildDirectory">D:/code/build-ShadowPlayer-61Protable2-Release</value>
+    <value type="QString" key="Qt4ProjectManager.Qt4BuildConfiguration.BuildDirectory">D:/code/GitHub/ShadowPlayer-BLumia/DailyBuild</value>
     <value type="bool" key="Qt4ProjectManager.Qt4BuildConfiguration.UseShadowBuild">true</value>
    </valuemap>
    <value type="int" key="ProjectExplorer.Target.BuildConfigurationCount">1</value>
@@ -159,7 +159,7 @@
     </valuelist>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">ShadowPlayer</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
-    <value type="QByteArray" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:D:/code/ShadowPlayer/ShadowPlayer.pro</value>
+    <value type="QByteArray" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:D:/code/GitHub/ShadowPlayer-BLumia/ShadowPlayer/ShadowPlayer.pro</value>
     <value type="int" key="Qt4ProjectManager.Qt4RunConfiguration.BaseEnvironmentBase">2</value>
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.CommandLineArguments"></value>
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.ProFile">ShadowPlayer.pro</value>

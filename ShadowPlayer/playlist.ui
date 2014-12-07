@@ -61,6 +61,28 @@ QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {
 QScrollBar::add-page:vertical,QScrollBar::sub-page:vertical
 {
     background:rgba(255, 255, 255, 128);
+}
+
+QPushButton {
+	border: 0px solid grey;
+	background-color: rgba(255, 255, 255, 170);
+	padding: -8px -8px;
+}
+
+QPushButton:hover {
+	background-color: rgba(255, 255, 255, 220);
+}
+
+QPushButton:pressed {
+	background-color: rgba(255, 255, 255, 250);
+}
+
+QPushButton#fliterOptionButton {
+	background-color: transparent;
+}
+
+QPushButton#fliterOptionButton:hover {
+	background-color: rgba(0, 85, 255, 120);
 }</string>
   </property>
   <widget class="QTableWidget" name="playListTable">
@@ -140,99 +162,17 @@ QHeaderView::section {
    <column/>
    <column/>
   </widget>
-  <widget class="QLineEdit" name="searchEdit">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>330</y>
-     <width>121</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QLineEdit {
-	border: 1px solid rgb(0, 170, 255);
-	border-radius: 2px;
-	background: rgba(255, 255, 255, 255);
-}
-
-QLineEdit:focus {
-	border: 1px solid rgb(0, 170, 255);
-	border-radius: 2px;
-	background: rgb(230, 239, 255);
-}</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="searchButton">
-   <property name="geometry">
-    <rect>
-     <x>230</x>
-     <y>330</y>
-     <width>41</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>查找</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="searchNextButton">
-   <property name="geometry">
-    <rect>
-     <x>270</x>
-     <y>330</y>
-     <width>51</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>下一个</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="listOptionButton">
    <property name="geometry">
     <rect>
-     <x>260</x>
+     <x>230</x>
      <y>0</y>
-     <width>71</width>
-     <height>21</height>
+     <width>75</width>
+     <height>23</height>
     </rect>
    </property>
    <property name="text">
     <string>列表选项</string>
-   </property>
-  </widget>
-  <widget class="QCheckBox" name="isCaseSensitive">
-   <property name="geometry">
-    <rect>
-     <x>140</x>
-     <y>330</y>
-     <width>81</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QCheckBox {
-    spacing: 3px;
-}
-
-QCheckBox::indicator {
-    width: 13px;
-    height: 13px;
-	border: 1px solid rgb(0, 170, 255);
-	border-radius: 4px;
-}
-
-QCheckBox::indicator:unchecked {
-    background-color: white;
-}
-
-QCheckBox::indicator:checked {
-    background-color: rgb(178, 203, 255);
-}</string>
-   </property>
-   <property name="text">
-    <string>区分大小写</string>
    </property>
   </widget>
   <widget class="QComboBox" name="playListCombo">
@@ -241,7 +181,7 @@ QCheckBox::indicator:checked {
      <x>0</x>
      <y>0</y>
      <width>111</width>
-     <height>21</height>
+     <height>23</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -301,10 +241,140 @@ QComboBox::down-arrow {
     </property>
    </item>
   </widget>
+  <widget class="QPushButton" name="musicOptionButton">
+   <property name="geometry">
+    <rect>
+     <x>152</x>
+     <y>0</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>歌曲选项</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="fliterOptionButton">
+   <property name="geometry">
+    <rect>
+     <x>308</x>
+     <y>0</y>
+     <width>23</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/icon/ICO/Fliter.png</normaloff>:/icon/ICO/Fliter.png</iconset>
+   </property>
+  </widget>
+  <widget class="QFrame" name="finderFlame">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>330</y>
+     <width>331</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QLineEdit" name="searchEdit">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>0</y>
+      <width>121</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit {
+	border: 1px solid rgb(0, 170, 255);
+	border-radius: 2px;
+	background: rgba(255, 255, 255, 255);
+}
+
+QLineEdit:focus {
+	border: 1px solid rgb(0, 170, 255);
+	border-radius: 2px;
+	background: rgb(230, 239, 255);
+}</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="isCaseSensitive">
+    <property name="geometry">
+     <rect>
+      <x>135</x>
+      <y>0</y>
+      <width>81</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox {
+    spacing: 3px;
+}
+
+QCheckBox::indicator {
+    width: 13px;
+    height: 13px;
+	border: 1px solid rgb(0, 170, 255);
+	border-radius: 4px;
+}
+
+QCheckBox::indicator:unchecked {
+    background-color: white;
+}
+
+QCheckBox::indicator:checked {
+    background-color: rgb(178, 203, 255);
+}</string>
+    </property>
+    <property name="text">
+     <string>区分大小写</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="searchButton">
+    <property name="geometry">
+     <rect>
+      <x>225</x>
+      <y>0</y>
+      <width>41</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>查找</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="searchNextButton">
+    <property name="geometry">
+     <rect>
+      <x>275</x>
+      <y>0</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>下一个</string>
+    </property>
+   </widget>
+  </widget>
  </widget>
  <tabstops>
   <tabstop>playListTable</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="res.qrc"/>
+ </resources>
  <connections/>
 </ui>

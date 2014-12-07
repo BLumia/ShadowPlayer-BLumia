@@ -47,6 +47,7 @@ private slots:
     void on_searchButton_clicked();
     void on_searchNextButton_clicked();
     void setLenFiler();//右键菜单：歌曲最短长度过滤器，原on_setLenFilButton_clicked();
+    void showFinder();
     void openFileFloder();//右键菜单：打开所在文件夹
     void addFromFloderToList();//右键菜单：从文件夹导入歌曲，原on_addFloderButton_clicked();
     void insertToList();//右键菜单：插入歌曲到列表，原on_insertButton_clicked();
@@ -59,6 +60,10 @@ private slots:
 
 
 
+    void on_fliterOptionButton_clicked();
+
+    void on_musicOptionButton_clicked();
+
 signals:
     void callPlayer();//请求主窗口播放文件
 
@@ -69,6 +74,7 @@ private:
     int curIndex;//正在播放的文件索引
     Player *player;
     int lengthFilter;//播放长度过滤
+    QPropertyAnimation *finderAnimation;
 
 protected:
     void dragEnterEvent(QDragEnterEvent *event);//拖放相关
