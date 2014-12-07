@@ -129,7 +129,7 @@ ShadowPlayer::ShadowPlayer(QWidget *parent) :
 
     //背景渐变
     bgLinearGradient.setColorAt(0, QColor(255, 255, 255, 0));
-    bgLinearGradient.setColorAt(1, QColor(255, 255, 255, 255));
+    bgLinearGradient.setColorAt(1, QColor(255, 255, 255, 200));//255, 255, 255, 255
     bgLinearGradient.setStart(0, 0);
     bgLinearGradient.setFinalStop(0, height());
 
@@ -1154,7 +1154,7 @@ void ShadowPlayer::on_playModeButton_clicked()
 {
     playMode = ++playMode % 5;//切换模式
     //改了上述语句后编译时总有警告……
-    //其实构造函数已经初始化这个变量啦><
+    //其实构造函数已经初始化这个变量啦> <
     //这里没有问题哦~
     switch (playMode) {
     case 0:

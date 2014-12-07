@@ -59,7 +59,6 @@ private slots:
     void on_playListCombo_currentIndexChanged(int index);
 
 
-
     void on_fliterOptionButton_clicked();
 
     void on_musicOptionButton_clicked();
@@ -75,6 +74,7 @@ private:
     Player *player;
     int lengthFilter;//播放长度过滤
     QPropertyAnimation *finderAnimation;
+    QPropertyAnimation *playListAnimation;
 
 protected:
     void dragEnterEvent(QDragEnterEvent *event);//拖放相关

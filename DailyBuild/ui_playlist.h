@@ -116,7 +116,7 @@ public:
         if (playListTable->columnCount() < 2)
             playListTable->setColumnCount(2);
         playListTable->setObjectName(QStringLiteral("playListTable"));
-        playListTable->setGeometry(QRect(0, 25, 331, 297));
+        playListTable->setGeometry(QRect(0, 25, 331, 335));
         playListTable->setStyleSheet(QLatin1String("* {\n"
 "	gridline-color: rgba(255, 255, 255, 200);\n"
 "}\n"
@@ -214,7 +214,7 @@ public:
         fliterOptionButton->setIcon(icon);
         finderFlame = new QFrame(PlayList);
         finderFlame->setObjectName(QStringLiteral("finderFlame"));
-        finderFlame->setGeometry(QRect(0, 330, 331, 31));
+        finderFlame->setGeometry(QRect(331, 330, 331, 31));
         finderFlame->setFrameShape(QFrame::StyledPanel);
         finderFlame->setFrameShadow(QFrame::Raised);
         searchEdit = new QLineEdit(finderFlame);

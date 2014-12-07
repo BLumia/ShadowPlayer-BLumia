@@ -18,11 +18,17 @@ PlayList::PlayList(Player *player, QWidget *parent) :
 
     readFromFile(QCoreApplication::applicationDirPath() + "/PlayList.sdpl");
 
+    //搜索功能部分的动画
+    //搜索条
     finderAnimation = new QPropertyAnimation(ui->finderFlame, "geometry");
     finderAnimation->setEasingCurve(QEasingCurve::OutCirc);
     finderAnimation->setDuration(600);
     finderAnimation->setStartValue(QRect(331, 330, 331, 31));
     finderAnimation->setEndValue(QRect(0, 330, 331, 31));
+    //播放列表
+    playListAnimation = new QPropertyAnimation(ui->playListTable, "geometry");
+    playListAnimation->setDuration(600);
+    playListAnimation->setEasingCurve(QEasingCurve::OutCirc);
 }
 
 PlayList::~PlayList()
@@ -715,10 +721,16 @@ void PlayList::on_musicOptionButton_clicked()
 void PlayList::showFinder(){
     if (ui->finderFlame->x() > 150)
     {
+        playListAnimation->setStartValue(QRect(0, 25, 331, 335));
+        playListAnimation->setEndValue(QRect(0, 25, 331, 297));
+        playListAnimation->start();
         finderAnimation->setStartValue(QRect(331, 330, 331, 31));
         finderAnimation->setEndValue(QRect(0, 330, 331, 31));
         finderAnimation->start();
     } else {
+        playListAnimation->setStartValue(QRect(0, 25, 331, 297));
+        playListAnimation->setEndValue(QRect(0, 25, 331, 335));
+        playListAnimation->start();
         finderAnimation->setStartValue(QRect(0, 330, 331, 31));
         finderAnimation->setEndValue(QRect(331, 330, 331, 31));
         finderAnimation->start();

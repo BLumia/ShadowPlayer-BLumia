@@ -91,7 +91,7 @@ QPushButton#fliterOptionButton:hover {
      <x>0</x>
      <y>25</y>
      <width>331</width>
-     <height>297</height>
+     <height>335</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -274,7 +274,7 @@ QComboBox::down-arrow {
   <widget class="QFrame" name="finderFlame">
    <property name="geometry">
     <rect>
-     <x>0</x>
+     <x>331</x>
      <y>330</y>
      <width>331</width>
      <height>31</height>
