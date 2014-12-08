@@ -54,6 +54,7 @@ private slots:
     void addToList();//右键菜单：添加歌曲到列表，原on_addButton_clicked();
     void removeFromList();//右键菜单：从播放列表移除选定的项目，原on_deleteButton_clicked();
     void clearCurList();//右键菜单：清空当前列表，原on_clearButton_clicked();
+    bool listFileCopyer();//右键菜单：导出到目录。
     void on_listOptionButton_clicked();//显示列表的一些选项，比如导入导出
 
     void on_playListCombo_currentIndexChanged(int index);

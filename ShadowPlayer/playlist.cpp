@@ -664,6 +664,7 @@ void PlayList::on_listOptionButton_clicked()
 
     QMenu menu;
     menu.addAction("[导入]从文件夹导入歌曲" , this ,SLOT(addFromFloderToList()));
+    menu.addAction("[导出]复制列表歌曲到目录" , this ,SLOT(listFileCopyer()));
     menu.addAction("[查找]从列表中查找歌曲" , this ,SLOT(showFinder()));
     menu.exec(cur.pos());
 
@@ -735,4 +736,35 @@ void PlayList::showFinder(){
         finderAnimation->setEndValue(QRect(331, 330, 331, 31));
         finderAnimation->start();
     }
+}
+
+bool PlayList::listFileCopyer(){
+
+    QString pathTo=QFileDialog::getExistingDirectory(NULL, tr("选择文件夹（取消并在右键菜单选择“歌曲最短长度过滤选项”可设置音频长度过滤）"),"/",QFileDialog::ShowDirsOnly);
+    QFileInfo pathX(pathTo);
+    if (!pathX.isDir()){
+        //路径都不是，应该是人工取消，返回。
+        return false;
+    }
+
+    if (!fileList.isEmpty())
+    {
+        int count = fileList.size();
+        //遍历列表挨个儿复制
+        for (int i = 0; i < count; i++)
+        {
+            QString fileName = fileList[i];
+            QFileInfo fileInfo(fileName);
+            //复制
+            if (!QFile::copy(fileInfo.filePath(),pathTo+"\\"+fileInfo.fileName()))
+            {
+                //复制过程中出错，返回
+                QMessageBox::information(0, "诶？", "复制过程中出错了呐_(:з」∠)_\n倒霉孩子是："+pathTo+"\\"+fileInfo.fileName(), "shenmegui");
+                return false;
+            }
+        }
+    } else {
+        QMessageBox::information(0, "诶？", "列表竟然是空的呐_(:з」∠)_", "一定哪里搞错了");
+    }
+    return true;
 }
