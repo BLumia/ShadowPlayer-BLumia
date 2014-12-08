@@ -721,7 +721,7 @@ void PlayList::on_musicOptionButton_clicked()
 void PlayList::showFinder(){
     if (ui->finderFlame->x() > 150)
     {
-        playListAnimation->setStartValue(QRect(0, 25, 331, 335));
+        playListAnimation->setStartValue(QRect(0, 25, 331, 325));
         playListAnimation->setEndValue(QRect(0, 25, 331, 297));
         playListAnimation->start();
         finderAnimation->setStartValue(QRect(331, 330, 331, 31));
@@ -729,7 +729,7 @@ void PlayList::showFinder(){
         finderAnimation->start();
     } else {
         playListAnimation->setStartValue(QRect(0, 25, 331, 297));
-        playListAnimation->setEndValue(QRect(0, 25, 331, 335));
+        playListAnimation->setEndValue(QRect(0, 25, 331, 325));
         playListAnimation->start();
         finderAnimation->setStartValue(QRect(0, 330, 331, 31));
         finderAnimation->setEndValue(QRect(331, 330, 331, 31));

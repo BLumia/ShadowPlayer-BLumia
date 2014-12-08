@@ -116,7 +116,7 @@ public:
         if (playListTable->columnCount() < 2)
             playListTable->setColumnCount(2);
         playListTable->setObjectName(QStringLiteral("playListTable"));
-        playListTable->setGeometry(QRect(0, 25, 331, 335));
+        playListTable->setGeometry(QRect(0, 25, 331, 325));
         playListTable->setStyleSheet(QLatin1String("* {\n"
 "	gridline-color: rgba(255, 255, 255, 200);\n"
 "}\n"

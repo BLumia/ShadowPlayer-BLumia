@@ -91,7 +91,7 @@ QPushButton#fliterOptionButton:hover {
      <x>0</x>
      <y>25</y>
      <width>331</width>
-     <height>335</height>
+     <height>325</height>
     </rect>
    </property>
    <property name="styleSheet">
