@@ -56,6 +56,7 @@ SOURCES       = ..\ShadowPlayer\main.cpp \
 		..\ShadowPlayer\fftdisplay.cpp \
 		..\ShadowPlayer\shadowlabel.cpp \
 		..\ShadowPlayer\mini.cpp \
+		..\ShadowPlayer\thread.cpp \
 		shadowplayer_plugin_import.cpp release\qrc_res.cpp \
 		release\moc_shadowplayer.cpp \
 		release\moc_lrcbar.cpp \
@@ -65,7 +66,8 @@ SOURCES       = ..\ShadowPlayer\main.cpp \
 		release\moc_osd.cpp \
 		release\moc_fftdisplay.cpp \
 		release\moc_shadowlabel.cpp \
-		release\moc_mini.cpp
+		release\moc_mini.cpp \
+		release\moc_thread.cpp
 OBJECTS       = release/main.o \
 		release/shadowplayer.o \
 		release/player.o \
@@ -79,6 +81,7 @@ OBJECTS       = release/main.o \
 		release/fftdisplay.o \
 		release/shadowlabel.o \
 		release/mini.o \
+		release/thread.o \
 		release/shadowplayer_plugin_import.o \
 		release/qrc_res.o \
 		release/moc_shadowplayer.o \
@@ -89,7 +92,8 @@ OBJECTS       = release/main.o \
 		release/moc_osd.o \
 		release/moc_fftdisplay.o \
 		release/moc_shadowlabel.o \
-		release/moc_mini.o
+		release/moc_mini.o \
+		release/moc_thread.o
 
 DIST          = 
 QMAKE_TARGET  = ShadowPlayer
@@ -133,7 +137,7 @@ dist:
 	$(ZIP) ShadowPlayer.zip $(SOURCES) $(DIST) ..\ShadowPlayer\ShadowPlayer.pro ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\features\spec_pre.prf ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\qdevice.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\features\device_config.prf ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\common\shell-win32.conf ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\qconfig.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_axbase.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_axbase_private.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_axcontainer.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_axcontainer_private.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_axserver.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_axserver_private.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_bluetooth.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_bluetooth_private.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_bootstrap_private.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_clucene_private.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_concurrent.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_concurrent_private.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_core.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_core_private.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_declarative.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_declarative_private.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_designer.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_designer_private.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_designercomponents_private.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_gui.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_gui_private.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_help.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_help_private.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_multimedia.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_multimedia_private.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_multimediawidgets.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_multimediawidgets_private.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_network.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_network_private.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_nfc.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_nfc_private.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_opengl.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_opengl_private.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_openglextensions.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_openglextensions_private.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_platformsupport_private.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_positioning.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_positioning_private.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_printsupport.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_printsupport_private.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_qml.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_qml_private.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_qmldevtools_private.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_qmltest.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_qmltest_private.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_quick.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_quick_private.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_quickparticles_private.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_quickwidgets.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_quickwidgets_private.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_script.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_script_private.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_scripttools.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_scripttools_private.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_sensors.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_sensors_private.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_serialport.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_serialport_private.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_sql.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_sql_private.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_svg.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_svg_private.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_testlib.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_testlib_private.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_uitools.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_uitools_private.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_websockets.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_websockets_private.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_widgets.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_widgets_private.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_winextras.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_winextras_private.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_xml.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_xml_private.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_xmlpatterns.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_lib_xmlpatterns_private.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_plugin_dsengine.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_plugin_qdds.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_plugin_qdeclarativeview.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_plugin_qgenericbearer.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_plugin_qicns.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_plugin_qico.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_plugin_qjp2.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_plugin_qminimal.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_plugin_qmldbg_inspector.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_plugin_qmldbg_qtquick2.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_plugin_qmldbg_tcp.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_plugin_qmldbg_tcp_qtdeclarative.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_plugin_qmng.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_plugin_qnativewifibearer.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_plugin_qoffscreen.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_plugin_qsqlite.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_plugin_qsqlodbc.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_plugin_qsvg.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_plugin_qsvgicon.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_plugin_qtaccessiblequick.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_plugin_qtaccessiblewidgets.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_plugin_qtaudio_windows.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_plugin_qtga.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_plugin_qtiff.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_plugin_qtmedia_audioengine.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_plugin_qtmultimedia_m3u.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_plugin_qtposition_positionpoll.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_plugin_qtsensorgestures_plugin.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_plugin_qtsensorgestures_shakeplugin.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_plugin_qtsensors_dummy.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_plugin_qtsensors_generic.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_plugin_qwbmp.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_plugin_qwebp.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_plugin_qwindows.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\modules\qt_plugin_windowsprintersupport.pri ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\features\qt_functions.prf ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\features\qt_config.prf ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\features\win32\qt_config.prf ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\win32-g++\qmake.conf ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\features\spec_post.prf ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\features\exclusive_builds.prf ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\features\default_pre.prf ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\features\win32\default_pre.prf ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\features\resolve_config.prf ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\features\exclusive_builds_post.prf ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\features\default_post.prf ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\features\build_pass.prf ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\features\win32\rtti.prf ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\features\precompile_header.prf ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\features\warn_on.prf ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\features\qt.prf ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\features\resources.prf ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\features\moc.prf ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\features\win32\opengl.prf ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\features\uic.prf ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\features\win32\windows.prf ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\features\testcase_targets.prf ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\features\exceptions.prf ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\features\yacc.prf ..\..\..\..\Qt\5.3.1-static-MinGW\mkspecs\features\lex.prf ..\ShadowPlayer\ShadowPlayer.pro ..\ShadowPlayer\res.qrc D:/Qt/5.3.1-static-MinGW/lib/qtmain.prl D:/Qt/5.3.1-static-MinGW/lib/Qt5Core.prl D:/Qt/5.3.1-static-MinGW/lib/Qt5WinExtras.prl D:/Qt/5.3.1-static-MinGW/lib/Qt5Gui.prl D:/Qt/5.3.1-static-MinGW/lib/Qt5Widgets.prl D:/Qt/5.3.1-static-MinGW/plugins/accessible/qtaccessiblewidgets.prl D:/Qt/5.3.1-static-MinGW/plugins/platforms/qwindows.prl D:/Qt/5.3.1-static-MinGW/lib/Qt5PlatformSupport.prl D:/Qt/5.3.1-static-MinGW/plugins/imageformats/qdds.prl D:/Qt/5.3.1-static-MinGW/plugins/imageformats/qicns.prl D:/Qt/5.3.1-static-MinGW/plugins/imageformats/qico.prl D:/Qt/5.3.1-static-MinGW/plugins/imageformats/qjp2.prl D:/Qt/5.3.1-static-MinGW/plugins/imageformats/qmng.prl D:/Qt/5.3.1-static-MinGW/plugins/imageformats/qtga.prl D:/Qt/5.3.1-static-MinGW/plugins/imageformats/qtiff.prl D:/Qt/5.3.1-static-MinGW/plugins/imageformats/qwbmp.prl D:/Qt/5.3.1-static-MinGW/plugins/imageformats/qwebp.prl  NO_PCH_SOURCES RESOURCES HEADERS SOURCES OBJECTIVE_SOURCES FORMS YACCSOURCES YACCSOURCES LEXSOURCES 
 
 clean: compiler_clean 
-	-$(DEL_FILE) release\main.o release\shadowplayer.o release\player.o release\lyrics.o release\lrcbar.o release\spslider.o release\playlist.o release\MyGlobalShortCut.o release\MyWinEventFilter.o release\osd.o release\fftdisplay.o release\shadowlabel.o release\mini.o release\shadowplayer_plugin_import.o release\qrc_res.o release\moc_shadowplayer.o release\moc_lrcbar.o release\moc_spslider.o release\moc_playlist.o release\moc_MyGlobalShortCut.o release\moc_osd.o release\moc_fftdisplay.o release\moc_shadowlabel.o release\moc_mini.o
+	-$(DEL_FILE) release\main.o release\shadowplayer.o release\player.o release\lyrics.o release\lrcbar.o release\spslider.o release\playlist.o release\MyGlobalShortCut.o release\MyWinEventFilter.o release\osd.o release\fftdisplay.o release\shadowlabel.o release\mini.o release\thread.o release\shadowplayer_plugin_import.o release\qrc_res.o release\moc_shadowplayer.o release\moc_lrcbar.o release\moc_spslider.o release\moc_playlist.o release\moc_MyGlobalShortCut.o release\moc_osd.o release\moc_fftdisplay.o release\moc_shadowlabel.o release\moc_mini.o release\moc_thread.o
 	-$(DEL_FILE) release\ShadowPlayer_res.o
 
 distclean: clean 
@@ -189,9 +193,9 @@ release/qrc_res.cpp: ../ShadowPlayer/res.qrc \
 		../ShadowPlayer/image/Skin1.jpg
 	D:\Qt\5.3.1-static-MinGW\bin\rcc.exe -name res ..\ShadowPlayer\res.qrc -o release\qrc_res.cpp
 
-compiler_moc_header_make_all: release/moc_shadowplayer.cpp release/moc_lrcbar.cpp release/moc_spslider.cpp release/moc_playlist.cpp release/moc_MyGlobalShortCut.cpp release/moc_osd.cpp release/moc_fftdisplay.cpp release/moc_shadowlabel.cpp release/moc_mini.cpp
+compiler_moc_header_make_all: release/moc_shadowplayer.cpp release/moc_lrcbar.cpp release/moc_spslider.cpp release/moc_playlist.cpp release/moc_MyGlobalShortCut.cpp release/moc_osd.cpp release/moc_fftdisplay.cpp release/moc_shadowlabel.cpp release/moc_mini.cpp release/moc_thread.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) release\moc_shadowplayer.cpp release\moc_lrcbar.cpp release\moc_spslider.cpp release\moc_playlist.cpp release\moc_MyGlobalShortCut.cpp release\moc_osd.cpp release\moc_fftdisplay.cpp release\moc_shadowlabel.cpp release\moc_mini.cpp
+	-$(DEL_FILE) release\moc_shadowplayer.cpp release\moc_lrcbar.cpp release\moc_spslider.cpp release\moc_playlist.cpp release\moc_MyGlobalShortCut.cpp release\moc_osd.cpp release\moc_fftdisplay.cpp release\moc_shadowlabel.cpp release\moc_mini.cpp release\moc_thread.cpp
 release/moc_shadowplayer.cpp: ../../../../Qt/5.3.1-static-MinGW/include/QtWidgets/QMainWindow \
 		../../../../Qt/5.3.1-static-MinGW/include/QtWidgets/qmainwindow.h \
 		../../../../Qt/5.3.1-static-MinGW/include/QtWidgets/qwidget.h \
@@ -3203,6 +3207,59 @@ release/moc_mini.cpp: ../../../../Qt/5.3.1-static-MinGW/include/QtWidgets/QWidge
 		../ShadowPlayer/mini.h
 	D:\Qt\5.3.1-static-MinGW\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -ID:/Qt/5.3.1-static-MinGW/mkspecs/win32-g++ -ID:/code/GitHub/ShadowPlayer-BLumia/ShadowPlayer -ID:/code/GitHub/ShadowPlayer-BLumia/ShadowPlayer -ID:/Qt/5.3.1-static-MinGW/include -ID:/Qt/5.3.1-static-MinGW/include/QtWinExtras -ID:/Qt/5.3.1-static-MinGW/include/QtWidgets -ID:/Qt/5.3.1-static-MinGW/include/QtGui -ID:/Qt/5.3.1-static-MinGW/include/QtCore -I. ..\ShadowPlayer\mini.h -o release\moc_mini.cpp
 
+release/moc_thread.cpp: ../../../../Qt/5.3.1-static-MinGW/include/QtCore/QThread \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qthread.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qobject.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qobjectdefs.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qnamespace.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qglobal.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qconfig.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qfeatures.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qsystemdetection.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qprocessordetection.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qcompilerdetection.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qtypeinfo.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qtypetraits.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qsysinfo.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qlogging.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qflags.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qatomic.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qbasicatomic.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qatomic_bootstrap.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qgenericatomic.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qatomic_msvc.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qatomic_armv7.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qatomic_armv6.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qatomic_armv5.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qatomic_ia64.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qatomic_mips.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qatomic_x86.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qatomic_cxx11.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qatomic_gcc.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qatomic_unix.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qglobalstatic.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qmutex.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qnumeric.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qobjectdefs_impl.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qstring.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qchar.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qbytearray.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qrefcount.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qarraydata.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qstringbuilder.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qlist.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qalgorithms.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qiterator.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qcoreevent.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qscopedpointer.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qmetatype.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qvarlengtharray.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qcontainerfwd.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qisenum.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qobject_impl.h \
+		../ShadowPlayer/thread.h
+	D:\Qt\5.3.1-static-MinGW\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -ID:/Qt/5.3.1-static-MinGW/mkspecs/win32-g++ -ID:/code/GitHub/ShadowPlayer-BLumia/ShadowPlayer -ID:/code/GitHub/ShadowPlayer-BLumia/ShadowPlayer -ID:/Qt/5.3.1-static-MinGW/include -ID:/Qt/5.3.1-static-MinGW/include/QtWinExtras -ID:/Qt/5.3.1-static-MinGW/include/QtWidgets -ID:/Qt/5.3.1-static-MinGW/include/QtGui -ID:/Qt/5.3.1-static-MinGW/include/QtCore -I. ..\ShadowPlayer\thread.h -o release\moc_thread.cpp
+
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
 compiler_uic_make_all: ui_shadowplayer.h ui_lrcbar.h ui_playlist.h ui_osd.h ui_mini.h
@@ -4933,6 +4990,22 @@ release/shadowplayer.o: ../ShadowPlayer/shadowplayer.cpp ../ShadowPlayer/shadowp
 		../../../../Qt/5.3.1-static-MinGW/include/QtGui/QKeySequence \
 		../../../../Qt/5.3.1-static-MinGW/include/QtCore/QHash \
 		ui_shadowplayer.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtWidgets/QAction \
+		../../../../Qt/5.3.1-static-MinGW/include/QtWidgets/QButtonGroup \
+		../../../../Qt/5.3.1-static-MinGW/include/QtWidgets/QCheckBox \
+		../../../../Qt/5.3.1-static-MinGW/include/QtWidgets/QComboBox \
+		../../../../Qt/5.3.1-static-MinGW/include/QtWidgets/QDial \
+		../../../../Qt/5.3.1-static-MinGW/include/QtWidgets/QGroupBox \
+		../../../../Qt/5.3.1-static-MinGW/include/QtWidgets/QHeaderView \
+		../../../../Qt/5.3.1-static-MinGW/include/QtWidgets/QLabel \
+		../../../../Qt/5.3.1-static-MinGW/include/QtWidgets/QProgressBar \
+		../../../../Qt/5.3.1-static-MinGW/include/QtWidgets/QPushButton \
+		../ShadowPlayer/fftdisplay.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtGui/QPainter \
+		../../../../Qt/5.3.1-static-MinGW/include/QtGui/QPen \
+		../../../../Qt/5.3.1-static-MinGW/include/QtGui/QBrush \
+		../../../../Qt/5.3.1-static-MinGW/include/QtGui/QColor \
+		../ShadowPlayer/shadowlabel.h \
 		../ShadowPlayer/ID3v2Pic.h \
 		../ShadowPlayer/FlacPic.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\shadowplayer.o ..\ShadowPlayer\shadowplayer.cpp
@@ -5932,7 +6005,11 @@ release/lrcbar.o: ../ShadowPlayer/lrcbar.cpp ../ShadowPlayer/lrcbar.h \
 		../ShadowPlayer/bass_fx.h \
 		../../../../Qt/5.3.1-static-MinGW/include/QtCore/QString \
 		../../../../Qt/5.3.1-static-MinGW/include/QtCore/QFileInfo \
-		ui_lrcbar.h
+		ui_lrcbar.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtWidgets/QAction \
+		../../../../Qt/5.3.1-static-MinGW/include/QtWidgets/QApplication \
+		../../../../Qt/5.3.1-static-MinGW/include/QtWidgets/QButtonGroup \
+		../../../../Qt/5.3.1-static-MinGW/include/QtWidgets/QHeaderView
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\lrcbar.o ..\ShadowPlayer\lrcbar.cpp
 
 release/spslider.o: ../ShadowPlayer/spslider.cpp ../ShadowPlayer/spslider.h \
@@ -6485,7 +6562,17 @@ release/playlist.o: ../ShadowPlayer/playlist.cpp ../ShadowPlayer/playlist.h \
 		../ShadowPlayer/bass_fx.h \
 		../../../../Qt/5.3.1-static-MinGW/include/QtCore/QString \
 		../../../../Qt/5.3.1-static-MinGW/include/QtCore/QFileInfo \
-		ui_playlist.h
+		ui_playlist.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtWidgets/QAction \
+		../../../../Qt/5.3.1-static-MinGW/include/QtWidgets/QApplication \
+		../../../../Qt/5.3.1-static-MinGW/include/QtWidgets/QButtonGroup \
+		../../../../Qt/5.3.1-static-MinGW/include/QtWidgets/QCheckBox \
+		../../../../Qt/5.3.1-static-MinGW/include/QtWidgets/QComboBox \
+		../../../../Qt/5.3.1-static-MinGW/include/QtWidgets/QFrame \
+		../../../../Qt/5.3.1-static-MinGW/include/QtWidgets/QHeaderView \
+		../../../../Qt/5.3.1-static-MinGW/include/QtWidgets/QLineEdit \
+		../../../../Qt/5.3.1-static-MinGW/include/QtWidgets/QPushButton \
+		../../../../Qt/5.3.1-static-MinGW/include/QtWidgets/QTableWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\playlist.o ..\ShadowPlayer\playlist.cpp
 
 release/MyGlobalShortCut.o: ../ShadowPlayer/MyGlobalShortCut/MyGlobalShortCut.cpp ../ShadowPlayer/MyGlobalShortCut/MyGlobalShortCut.h \
@@ -7147,7 +7234,12 @@ release/osd.o: ../ShadowPlayer/osd.cpp ../ShadowPlayer/osd.h \
 		../../../../Qt/5.3.1-static-MinGW/include/QtWidgets/qtoolbox.h \
 		../../../../Qt/5.3.1-static-MinGW/include/QtWidgets/qtoolbutton.h \
 		../../../../Qt/5.3.1-static-MinGW/include/QtWidgets/qtwidgetsversion.h \
-		ui_osd.h
+		ui_osd.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtWidgets/QAction \
+		../../../../Qt/5.3.1-static-MinGW/include/QtWidgets/QApplication \
+		../../../../Qt/5.3.1-static-MinGW/include/QtWidgets/QButtonGroup \
+		../../../../Qt/5.3.1-static-MinGW/include/QtWidgets/QHeaderView \
+		../../../../Qt/5.3.1-static-MinGW/include/QtWidgets/QLabel
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\osd.o ..\ShadowPlayer\osd.cpp
 
 release/fftdisplay.o: ../ShadowPlayer/fftdisplay.cpp ../ShadowPlayer/fftdisplay.h \
@@ -8139,8 +8231,71 @@ release/mini.o: ../ShadowPlayer/mini.cpp ../ShadowPlayer/mini.h \
 		../ShadowPlayer/bass_fx.h \
 		../../../../Qt/5.3.1-static-MinGW/include/QtCore/QString \
 		../../../../Qt/5.3.1-static-MinGW/include/QtCore/QFileInfo \
-		ui_mini.h
+		ui_mini.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtWidgets/QAction \
+		../../../../Qt/5.3.1-static-MinGW/include/QtWidgets/QApplication \
+		../../../../Qt/5.3.1-static-MinGW/include/QtWidgets/QButtonGroup \
+		../../../../Qt/5.3.1-static-MinGW/include/QtWidgets/QGroupBox \
+		../../../../Qt/5.3.1-static-MinGW/include/QtWidgets/QHeaderView \
+		../../../../Qt/5.3.1-static-MinGW/include/QtWidgets/QLabel \
+		../../../../Qt/5.3.1-static-MinGW/include/QtWidgets/QPushButton \
+		../ShadowPlayer/spslider.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtWidgets/QSlider \
+		../../../../Qt/5.3.1-static-MinGW/include/QtGui/QMouseEvent
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\mini.o ..\ShadowPlayer\mini.cpp
+
+release/thread.o: ../ShadowPlayer/thread.cpp ../ShadowPlayer/thread.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/QThread \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qthread.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qobject.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qobjectdefs.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qnamespace.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qglobal.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qconfig.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qfeatures.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qsystemdetection.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qprocessordetection.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qcompilerdetection.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qtypeinfo.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qtypetraits.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qsysinfo.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qlogging.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qflags.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qatomic.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qbasicatomic.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qatomic_bootstrap.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qgenericatomic.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qatomic_msvc.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qatomic_armv7.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qatomic_armv6.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qatomic_armv5.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qatomic_ia64.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qatomic_mips.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qatomic_x86.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qatomic_cxx11.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qatomic_gcc.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qatomic_unix.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qglobalstatic.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qmutex.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qnumeric.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qobjectdefs_impl.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qstring.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qchar.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qbytearray.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qrefcount.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qarraydata.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qstringbuilder.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qlist.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qalgorithms.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qiterator.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qcoreevent.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qscopedpointer.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qmetatype.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qvarlengtharray.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qcontainerfwd.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qisenum.h \
+		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qobject_impl.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\thread.o ..\ShadowPlayer\thread.cpp
 
 release/shadowplayer_plugin_import.o: shadowplayer_plugin_import.cpp ../../../../Qt/5.3.1-static-MinGW/include/QtCore/QtPlugin \
 		../../../../Qt/5.3.1-static-MinGW/include/QtCore/qplugin.h \
@@ -8231,6 +8386,9 @@ release/moc_shadowlabel.o: release/moc_shadowlabel.cpp
 
 release/moc_mini.o: release/moc_mini.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\moc_mini.o release\moc_mini.cpp
+
+release/moc_thread.o: release/moc_thread.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\moc_thread.o release\moc_thread.cpp
 
 ####### Install
 

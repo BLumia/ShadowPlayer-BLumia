@@ -1,4 +1,5 @@
 #include "playlist.h"
+#include "thread.h"
 #include "ui_playlist.h"
 
 PlayList::PlayList(Player *player, QWidget *parent) :
@@ -698,6 +699,7 @@ void PlayList::on_fliterOptionButton_clicked()
 
     QMenu menu;
     menu.addAction("[选项]歌曲最短长度过滤选项" , this ,SLOT(setLenFiler()));
+    //menu.addAction("[测试]核弹反应堆" , this ,SLOT(debuger()));
     menu.exec(cur.pos());
 
 }
@@ -740,7 +742,7 @@ void PlayList::showFinder(){
 
 bool PlayList::listFileCopyer(){
 
-    QString pathTo=QFileDialog::getExistingDirectory(NULL, tr("选择文件夹（取消并在右键菜单选择“歌曲最短长度过滤选项”可设置音频长度过滤）"),"/",QFileDialog::ShowDirsOnly);
+    QString pathTo=QFileDialog::getExistingDirectory(NULL, tr("选择要导出（复制）到的文件夹"),"/",QFileDialog::ShowDirsOnly);
     QFileInfo pathX(pathTo);
     if (!pathX.isDir()){
         //路径都不是，应该是人工取消，返回。
@@ -767,4 +769,11 @@ bool PlayList::listFileCopyer(){
         QMessageBox::information(0, "诶？", "列表竟然是空的呐_(:з」∠)_", "一定哪里搞错了");
     }
     return true;
+}
+
+void PlayList::debuger(){
+    MutiThread Thread1;
+    Thread1.setFunc(1);
+    Thread1.start();//只要执行这行就爆炸，原因不明。。。
+    //第702行启用测试。
 }

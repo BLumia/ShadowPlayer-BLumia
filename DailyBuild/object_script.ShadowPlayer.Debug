@@ -12,6 +12,7 @@ INPUT(
 ./debug\fftdisplay.o
 ./debug\shadowlabel.o
 ./debug\mini.o
+./debug\thread.o
 ./debug\shadowplayer_plugin_import.o
 ./debug\qrc_res.o
 ./debug\moc_shadowplayer.o
@@ -23,4 +24,5 @@ INPUT(
 ./debug\moc_fftdisplay.o
 ./debug\moc_shadowlabel.o
 ./debug\moc_mini.o
+./debug\moc_thread.o
 );

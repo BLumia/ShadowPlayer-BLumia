@@ -56,12 +56,12 @@ private slots:
     void clearCurList();//右键菜单：清空当前列表，原on_clearButton_clicked();
     bool listFileCopyer();//右键菜单：导出到目录。
     void on_listOptionButton_clicked();//显示列表的一些选项，比如导入导出
-
     void on_playListCombo_currentIndexChanged(int index);
+
+    void debuger();
 
 
     void on_fliterOptionButton_clicked();
-
     void on_musicOptionButton_clicked();
 
 signals:

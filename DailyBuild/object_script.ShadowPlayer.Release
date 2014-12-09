@@ -12,6 +12,7 @@ INPUT(
 ./release\fftdisplay.o
 ./release\shadowlabel.o
 ./release\mini.o
+./release\thread.o
 ./release\shadowplayer_plugin_import.o
 ./release\qrc_res.o
 ./release\moc_shadowplayer.o
@@ -23,4 +24,5 @@ INPUT(
 ./release\moc_fftdisplay.o
 ./release\moc_shadowlabel.o
 ./release\moc_mini.o
+./release\moc_thread.o
 );

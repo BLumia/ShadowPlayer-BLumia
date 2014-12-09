@@ -24,7 +24,8 @@ SOURCES += main.cpp\
     osd.cpp \
     fftdisplay.cpp \
     shadowlabel.cpp \
-    mini.cpp
+    mini.cpp \
+	thread.cpp
 
 HEADERS  += shadowplayer.h \
     player.h \
@@ -40,7 +41,8 @@ HEADERS  += shadowplayer.h \
     shadowlabel.h \
 	ID3v2Pic.h \
 	FlacPic.h \
-    mini.h
+    mini.h \
+    thread.h
 
 FORMS    += shadowplayer.ui \
     lrcbar.ui \
