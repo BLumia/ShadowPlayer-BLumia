@@ -90,11 +90,20 @@ ShadowPlayer::ShadowPlayer(QWidget *parent) :
     MyGlobalShortCut *stopShortcut = new MyGlobalShortCut("Ctrl+F3", this);
     connect(stopShortcut,SIGNAL(activated()), this,SLOT(on_stopButton_clicked()));//停止键热键
     MyGlobalShortCut *muteShortcut = new MyGlobalShortCut("Ctrl+F4", this);
-    connect(muteShortcut,SIGNAL(activated()), this,SLOT(on_muteButton_clicked()));//下一曲热键
+    connect(muteShortcut,SIGNAL(activated()), this,SLOT(on_muteButton_clicked()));//静音热键
     MyGlobalShortCut *preShortcut = new MyGlobalShortCut("Ctrl+F5", this);
     connect(preShortcut,SIGNAL(activated()), this,SLOT(on_playPreButton_clicked()));//上一曲热键
     MyGlobalShortCut *nextShortcut = new MyGlobalShortCut("Ctrl+F6", this);
     connect(nextShortcut,SIGNAL(activated()), this,SLOT(on_playNextButton_clicked()));//下一曲热键
+    //Media Keys(键盘上的多媒体键)
+    MyGlobalShortCut *mplayShortcut = new MyGlobalShortCut("Media Play", this);
+    connect(mplayShortcut,SIGNAL(activated()), this,SLOT(on_playButton_clicked()));//播放键热键
+    MyGlobalShortCut *mmuteShortcut = new MyGlobalShortCut("Volume Mute", this);
+    connect(mmuteShortcut,SIGNAL(activated()), this,SLOT(on_muteButton_clicked()));//静音热键
+    MyGlobalShortCut *mpreShortcut = new MyGlobalShortCut("Media Previous", this);
+    connect(mpreShortcut,SIGNAL(activated()), this,SLOT(on_playPreButton_clicked()));//上一曲热键
+    MyGlobalShortCut *mnextShortcut = new MyGlobalShortCut("Media Next", this);
+    connect(mnextShortcut,SIGNAL(activated()), this,SLOT(on_playNextButton_clicked()));//下一曲热键
 
     skinMode = 2; //皮肤模式 0.不更改大小 1.左侧 2.全窗口 3.自动 4.动态缩放
     skinPos = 1;//背景图片位置 0.显示顶端 1.显示中间 2.显示底部

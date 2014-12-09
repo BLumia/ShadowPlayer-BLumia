@@ -7,6 +7,7 @@
 参考了以下文档：
 http://blog.csdn.net/xipiaoyouzi/article/details/8450704
 http://www.kuqin.com/qtdocument/threads.html
+http://my.oschina.net/u/200628/blog/187865（这个最科学）
 */
 
 #include <QThread>

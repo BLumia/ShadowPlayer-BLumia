@@ -74,6 +74,14 @@ quint32 MyGlobalShortCut::nativeKeycode(Qt::Key key)
         return VK_PRIOR;
     case Qt::Key_PageDown:
         return VK_NEXT;
+    case Qt::Key_MediaPlay:
+        return VK_MEDIA_PLAY_PAUSE;
+    case Qt::Key_MediaStop:
+        return VK_MEDIA_STOP;
+    case Qt::Key_MediaNext:
+        return VK_MEDIA_NEXT_TRACK;
+    case Qt::Key_MediaPrevious:
+        return VK_MEDIA_PREV_TRACK;
     case Qt::Key_F1:
         return VK_F1;
     case Qt::Key_F2:
