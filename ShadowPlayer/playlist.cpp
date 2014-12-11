@@ -357,6 +357,8 @@ void PlayList::loadFromFloder(const QString path)
         {
             add(fileName);
         }
+        //防止界面假死（多线程尝试失败所以先用这个）
+        QApplication::processEvents();
     }
     delete urls;//上面创建了指针
 }
@@ -764,10 +766,14 @@ bool PlayList::listFileCopyer(){
                 QMessageBox::information(0, "诶？", "复制过程中出错了呐_(:з」∠)_\n倒霉孩子是："+pathTo+"\\"+fileInfo.fileName(), "shenmegui");
                 return false;
             }
+            //防止界面假死（多线程尝试失败所以先用这个）
+            QApplication::processEvents();
         }
     } else {
-        QMessageBox::information(0, "诶？", "列表竟然是空的呐_(:з」∠)_", "一定哪里搞错了");
+        QMessageBox::information(0, "诶？", "列表竟然是空的呐_(:з」∠)_", "一定哪里搞错了...");
+        return false;
     }
+    QMessageBox::information(0, "It's done", "完成啦\(^.^)//", "好棒~");
     return true;
 }
 
@@ -775,5 +781,5 @@ void PlayList::debuger(){
     MutiThread Thread1;
     Thread1.setFunc(1);
     Thread1.start();//只要执行这行就爆炸，原因不明。。。
-    //第702行启用测试。
+    //第704行启用测试。
 }
