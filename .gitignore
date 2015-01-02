@@ -29,3 +29,4 @@
 
 # PlayerLog and TempData
 *.sdpl
+*.user
