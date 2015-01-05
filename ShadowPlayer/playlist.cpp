@@ -744,6 +744,7 @@ void PlayList::showFinder(){
 
 bool PlayList::listFileCopyer(){
 
+    int copied = 0,same = 0;
     QString pathTo=QFileDialog::getExistingDirectory(NULL, tr("选择要导出（复制）到的文件夹"),"/",QFileDialog::ShowDirsOnly);
     QFileInfo pathX(pathTo);
     if (!pathX.isDir()){
@@ -760,12 +761,18 @@ bool PlayList::listFileCopyer(){
             QString fileName = fileList[i];
             QFileInfo fileInfo(fileName);
             //复制
+            QDir dir(pathTo+"\\"+fileInfo.fileName());
+            if (dir.exists()) {
+                same++;
+                continue;
+            }
             if (!QFile::copy(fileInfo.filePath(),pathTo+"\\"+fileInfo.fileName()))
             {
                 //复制过程中出错，返回
                 QMessageBox::information(0, "诶？", "复制过程中出错了呐_(:з」∠)_\n倒霉孩子是："+pathTo+"\\"+fileInfo.fileName(), "shenmegui");
                 return false;
             }
+            copied++;
             //防止界面假死（多线程尝试失败所以先用这个）
             QApplication::processEvents();
         }
@@ -773,7 +780,7 @@ bool PlayList::listFileCopyer(){
         QMessageBox::information(0, "诶？", "列表竟然是空的呐_(:з」∠)_", "一定哪里搞错了...");
         return false;
     }
-    QMessageBox::information(0, "It's done", "完成啦\(^.^)//", "好棒~");
+    QMessageBox::information(0, "It's done", "完成啦\(^.^)//\n一共复制了"+ QString::number(copied,10)+"个新曲目，另有"+ QString::number(same,10)+"个已有项目被跳过", "好棒~");
     return true;
 }
 
