@@ -590,9 +590,12 @@ void ShadowPlayer::loadFile(QString file)
         using namespace spID3;
         using namespace spFLAC;
         QFile(QCoreApplication::applicationDirPath() + "/cover").remove();//先删除专辑封面文件
+        /*
         if(!spID3::extractPicture(file.toLocal8Bit().data(), QString(QCoreApplication::applicationDirPath() + "/cover").toStdString().c_str()))
             spFLAC::extractPicture(file.toLocal8Bit().data(), QString(QCoreApplication::applicationDirPath() + "/cover").toStdString().c_str());//释放出专辑封面文件
         showCoverPic(fileinfo.path());//显示专辑封面
+        */
+        showCoverPic(file);//显示专辑封面
         QFile(QCoreApplication::applicationDirPath() + "/cover").remove();//删除专辑封面文件
 
         //清除ab循环
@@ -827,14 +830,31 @@ void ShadowPlayer::UpdateLrc()
     //ui->lrcLabel_7->setStyleSheet(QString("color: rgba(0, 0, 0, %1)").arg(235 * curTimePos + 10));
 }
 
-void ShadowPlayer::showCoverPic(QString path){
+void ShadowPlayer::showCoverPic(QString filePath){
+
+    QFileInfo fileinfo(filePath);
+    QString path = fileinfo.path();
+
     QFileInfo mapIDInfo(path);
     QString maptitle = mapIDInfo.baseName();
     char mapid[7];
     sscanf(maptitle.toStdString().c_str(), "%s", mapid);
     //QMessageBox::information(0, "mapid", maptitle+" "+mapid);
+    /*
     if (QFileInfo(QCoreApplication::applicationDirPath() + "/cover").exists())
         ui->coverLabel->setPixmap(QPixmap(QCoreApplication::applicationDirPath() + "/cover"));
+    */
+    if (spID3::loadPictureData(filePath.toLocal8Bit().data()))
+    {
+        QByteArray picData((const char*)spID3::getPictureDataPtr(), spID3::getPictureLength());
+        ui->coverLabel->setPixmap(QPixmap::fromImage(QImage::fromData(picData)));
+        spID3::freePictureData();
+    } else if (spFLAC::loadPictureData(filePath.toLocal8Bit().data()))
+    {
+        QByteArray picData((const char*)spFLAC::getPictureDataPtr(), spFLAC::getPictureLength());
+        ui->coverLabel->setPixmap(QPixmap::fromImage(QImage::fromData(picData)));
+        spFLAC::freePictureData();
+    }
     else if (QFileInfo(path + "/cover.jpg").exists())
         ui->coverLabel->setPixmap(QPixmap(path + "/cover.jpg"));
     else if (QFileInfo(path + "/cover.jpeg").exists())

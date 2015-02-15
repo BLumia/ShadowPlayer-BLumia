@@ -107,7 +107,7 @@ private:
 
     float arraySUM(int start, int end, float *array);//求数组平均数
     void UpdateFFT();
-    void showCoverPic(QString path);
+    void showCoverPic(QString filePath);
     void loadAbPointFile(QString path);
     void infoLabelAnimation();
     void drawFFTBar(QWidget *parent, int x, int y, int width, int height, double percent);
