@@ -34,6 +34,7 @@ public:
     QString getSelFile();
     QString playLast();//播放列表末尾文件
     void tableUpdate();//更新显示内容
+    void sortPlayList(int howToSort);//为播放列表排序表
     void saveToFile(QString fileName);
     void readFromFile(QString fileName);
     bool justSearch(QString file);
