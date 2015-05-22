@@ -20,11 +20,13 @@ public:
     double getTimePos(int ms);//返回指定时间在当前语句中的位置
     QString getLrcString(int offset);//取得歌词文本，参数：行数偏移量，负值表示提前
     bool isLrcEmpty();
+    int lrcOffset;//当前歌词偏移量
 private:
     QMap<int, QString> lrcMap;//存放歌词的QMap
     QList<int> timeList;//存放歌词时间的列表
     int curLrcTime;//目前将要显示的歌词时间
     int nextLrcTime;//下一句歌词的时间
+    //int lrcOffset = 10;//当前歌词偏移量
 };
 
 #endif // LYRICS_H

@@ -38,6 +38,7 @@ ShadowPlayer::ShadowPlayer(QWidget *parent) :
 
     lb = new LrcBar(lyrics, player, 0);//传递对象指针以便访问
     playing = false;
+    lyrics->lrcOffset = 0;//当前歌词时间偏移量（ms）
     this->setWindowIcon(QIcon(":icon/ICO/ShadowPlayer.ico"));//设置窗口图标
     this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowSystemMenuHint | Qt::WindowMinimizeButtonHint);//无边框
     this->setAttribute(Qt::WA_TranslucentBackground, true);//背景透明
@@ -790,9 +791,9 @@ void ShadowPlayer::UpdateTime()
 void ShadowPlayer::UpdateLrc()
 {
     //刷新歌词时间
-    lyrics->updateTime(player->getCurTimeMS(), player->getTotalTimeMS());
+    lyrics->updateTime(player->getCurTimeMS()+lyrics->lrcOffset, player->getTotalTimeMS());
     double pos = 0;
-    double curTimePos = lyrics->getTimePos(player->getCurTimeMS());
+    double curTimePos = lyrics->getTimePos(player->getCurTimeMS()+lyrics->lrcOffset);
     //改变歌词文本
     ui->lrcLabel_1->setText(lyrics->getLrcString(-3));
     ui->lrcLabel_2->setText(lyrics->getLrcString(-2));

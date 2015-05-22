@@ -45,7 +45,7 @@ void LrcBar::UpdateTime()
 {
     if (this->isVisible())
     {
-        lyrics->updateTime(player->getCurTimeMS(), player->getTotalTimeMS());;
+        lyrics->updateTime(player->getCurTimeMS()+lyrics->lrcOffset, player->getTotalTimeMS());;
         this->repaint();
     }
 }
@@ -107,7 +107,7 @@ void LrcBar::paintEvent(QPaintEvent *)
 
     QFontMetrics fm(font);//字体参数，用于计算
     int lrcWidth = fm.width(curLrc);//歌词文本宽度
-    double curTimePos = lyrics->getTimePos(player->getCurTimeMS());//当前时间点
+    double curTimePos = lyrics->getTimePos(player->getCurTimeMS()+lyrics->lrcOffset);//当前时间点
     int maskWidth = lrcWidth * curTimePos;//计算出当前时间变色文本的宽度
 
     //原来的代码偶尔会有1像素点的误差，已删除，改用自己计算的中间位置
