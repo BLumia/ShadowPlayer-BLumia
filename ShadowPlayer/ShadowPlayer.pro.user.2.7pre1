@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 2.7.2, 2015-02-15T22:14:46. -->
+<!-- Written by QtCreator 2.7.2, 2015-05-23T00:56:22. -->
 <qtcreator>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
@@ -51,9 +51,9 @@
  <data>
   <variable>ProjectExplorer.Project.Target.0</variable>
   <valuemap type="QVariantMap">
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">61Protable2</value>
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">61Protable2</value>
-   <value type="QByteArray" key="ProjectExplorer.ProjectConfiguration.Id">{8e101018-ef38-4507-9657-f43c5d57f8c6}</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">61 Protable</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">61 Protable</value>
+   <value type="QByteArray" key="ProjectExplorer.ProjectConfiguration.Id">{1b724ec1-9112-4fb8-afbf-7e35e1ac1c43}</value>
    <value type="int" key="ProjectExplorer.Target.ActiveBuildConfiguration">0</value>
    <value type="int" key="ProjectExplorer.Target.ActiveDeployConfiguration">0</value>
    <value type="int" key="ProjectExplorer.Target.ActiveRunConfiguration">0</value>
@@ -107,7 +107,7 @@
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
     <value type="QByteArray" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4BuildConfiguration</value>
     <value type="int" key="Qt4ProjectManager.Qt4BuildConfiguration.BuildConfiguration">0</value>
-    <value type="QString" key="Qt4ProjectManager.Qt4BuildConfiguration.BuildDirectory">D:/code/GitHub/ShadowPlayer-BLumia/DailyBuild</value>
+    <value type="QString" key="Qt4ProjectManager.Qt4BuildConfiguration.BuildDirectory">D:/code/GitHub/ShadowPlayer-BLumia/DailyBuild/release</value>
     <value type="bool" key="Qt4ProjectManager.Qt4BuildConfiguration.UseShadowBuild">true</value>
    </valuemap>
    <value type="int" key="ProjectExplorer.Target.BuildConfigurationCount">1</value>
@@ -182,7 +182,7 @@
  </data>
  <data>
   <variable>ProjectExplorer.Project.Updater.EnvironmentId</variable>
-  <value type="QString">{a19b98a6-ad70-465e-8b17-990948212fec}</value>
+  <value type="QString">{ed148dc2-abce-4456-b1b4-3ea136915782}</value>
  </data>
  <data>
   <variable>ProjectExplorer.Project.Updater.FileVersion</variable>

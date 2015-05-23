@@ -340,7 +340,69 @@ background-color: transparent;
 QPushButton#setJumpButton:hover {
 background-color: rgba(0, 85, 255, 120);
 }
-</string>
+
+QSlider::groove:horizontal#offsetSlider {
+	border: 1px solid grey;
+	border-radius: 3px;
+	height: 4px;
+	margin: 0px 0;
+}
+
+QSlider::sub-page:horizontal#offsetSlider {
+	border-radius: 3px;
+	background: rgba(85, 170, 0, 70);
+}
+
+/* slider外边框 */
+QSlider::groove:vertical#offsetSlider {
+	border: 1px solid rgba(85, 170, 0, 70);
+	border-radius: 3px;
+	width: 4px;
+	margin: 0px 0;
+} 
+
+QSlider::groove:vertical:hover#offsetSlider {
+	border: 1px solid rgba(85, 170, 0, 170);
+	border-radius: 3px;
+	width: 4px;
+	margin: 0px 0;
+} 
+
+/* 拖动按钮 */
+QSlider::handle:vertical#offsetSlider {
+	border-radius: 3px;
+	border: 0px solid #5c5c5c;
+	background: rgba(85, 150, 0, 70);
+	margin: -5px -5px -5px -5px;
+	top: 5px; bottom: 5px;
+}
+
+QSlider::handle:vertical:hover#offsetSlider {
+	border-radius: 3px;
+	border: 0px solid #5c5c5c;
+	background: rgba(95, 155, 0, 180);
+	margin: -5px -5px -5px -5px;
+	top: 5px; bottom: 5px;
+}
+
+QSlider::add-page:vertical#offsetSlider {
+	border-radius: 3px;
+	background: rgba(85, 170, 0, 0);
+}
+
+QPushButton#offsetLabel {
+	color: rgba(95, 160, 0, 90);
+	background-color: rgba(255, 255, 255, 0);
+	font-family: &quot;Segoe UI&quot;;
+	font-size :11px;
+}
+
+QPushButton:hover#offsetLabel {
+	color: rgba(95, 170, 0, 180);
+	background-color: rgba(255, 255, 255, 0);
+	font-family: &quot;Segoe UI&quot;;
+	font-size :11px;
+}</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QPushButton" name="playButton">
@@ -1480,6 +1542,38 @@ QComboBox::down-arrow:on {
      </property>
      <property name="text">
       <string>选择文件</string>
+     </property>
+    </widget>
+    <widget class="QSlider" name="offsetSlider">
+     <property name="geometry">
+      <rect>
+       <x>291</x>
+       <y>27</y>
+       <width>22</width>
+       <height>131</height>
+      </rect>
+     </property>
+     <property name="minimum">
+      <number>-9000</number>
+     </property>
+     <property name="maximum">
+      <number>9000</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="offsetLabel">
+     <property name="geometry">
+      <rect>
+       <x>272</x>
+       <y>160</y>
+       <width>61</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>lrcOffset</string>
      </property>
     </widget>
    </widget>

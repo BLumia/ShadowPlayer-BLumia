@@ -92,6 +92,10 @@ private slots:
 
     void on_eqEnableCheckBox_clicked(bool checked);
 
+    void on_offsetSlider_valueChanged(int value);
+
+    void on_offsetLabel_clicked();
+
 public slots:
     void on_showDskLrcButton_clicked();
     void on_miniPlayer_clicked();

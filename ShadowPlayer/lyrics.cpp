@@ -130,7 +130,7 @@ void Lyrics::updateTime(int curms, int totalms)
         if (nextTime != 0)
             nextLrcTime = nextTime;//如果有下一句歌词的话，设置时间
         else
-            nextLrcTime = totalms;//否则设置下一句为总时间
+            nextLrcTime = totalms + lrcOffset;//否则设置下一句为总时间
     }
 }
 

@@ -2031,3 +2031,16 @@ void ShadowPlayer::on_eqEnableCheckBox_clicked(bool checked)
         player->disableEQ();//移除均衡器
     }
 }
+
+void ShadowPlayer::on_offsetSlider_valueChanged(int value)
+{
+    lyrics->lrcOffset = value;
+    ui->offsetLabel->setText(QString::number(value, 10));
+}
+
+void ShadowPlayer::on_offsetLabel_clicked()
+{
+    lyrics->lrcOffset = 0;
+    ui->offsetSlider->setValue(0);
+    ui->offsetLabel->setText("lrcOffset");
+}

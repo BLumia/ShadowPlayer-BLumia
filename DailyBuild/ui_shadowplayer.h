@@ -87,6 +87,8 @@ public:
     QLabel *lrcLabel_7;
     QPushButton *showDskLrcButton;
     QPushButton *loadLrcButton;
+    QSlider *offsetSlider;
+    QPushButton *offsetLabel;
     QPushButton *extraButton;
     QPushButton *closeButton;
     QPushButton *setSkinButton;
@@ -430,7 +432,71 @@ public:
 "QPushButton#setJumpButton:hover {\n"
 "background-color: rgba(0, 85, 255, 120);\n"
 "}\n"
-""));
+"\n"
+"QSlider::groove:horizontal#offsetSlider {\n"
+"	border: 1px "
+                        "solid grey;\n"
+"	border-radius: 3px;\n"
+"	height: 4px;\n"
+"	margin: 0px 0;\n"
+"}\n"
+"\n"
+"QSlider::sub-page:horizontal#offsetSlider {\n"
+"	border-radius: 3px;\n"
+"	background: rgba(85, 170, 0, 70);\n"
+"}\n"
+"\n"
+"/* slider\345\244\226\350\276\271\346\241\206 */\n"
+"QSlider::groove:vertical#offsetSlider {\n"
+"	border: 1px solid rgba(85, 170, 0, 70);\n"
+"	border-radius: 3px;\n"
+"	width: 4px;\n"
+"	margin: 0px 0;\n"
+"} \n"
+"\n"
+"QSlider::groove:vertical:hover#offsetSlider {\n"
+"	border: 1px solid rgba(85, 170, 0, 170);\n"
+"	border-radius: 3px;\n"
+"	width: 4px;\n"
+"	margin: 0px 0;\n"
+"} \n"
+"\n"
+"/* \346\213\226\345\212\250\346\214\211\351\222\256 */\n"
+"QSlider::handle:vertical#offsetSlider {\n"
+"	border-radius: 3px;\n"
+"	border: 0px solid #5c5c5c;\n"
+"	background: rgba(85, 150, 0, 70);\n"
+"	margin: -5px -5px -5px -5px;\n"
+"	top: 5px; bottom: 5px;\n"
+"}\n"
+"\n"
+"QSlider::handle:vertical:hover#offsetSlider {\n"
+"	border-radius: 3px;\n"
+"	border: 0px solid #5c5c5c;\n"
+"	background: rgba(95, 155, 0, 180);\n"
+"	margin"
+                        ": -5px -5px -5px -5px;\n"
+"	top: 5px; bottom: 5px;\n"
+"}\n"
+"\n"
+"QSlider::add-page:vertical#offsetSlider {\n"
+"	border-radius: 3px;\n"
+"	background: rgba(85, 170, 0, 0);\n"
+"}\n"
+"\n"
+"QPushButton#offsetLabel {\n"
+"	color: rgba(95, 160, 0, 90);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	font-family: \"Segoe UI\";\n"
+"	font-size :11px;\n"
+"}\n"
+"\n"
+"QPushButton:hover#offsetLabel {\n"
+"	color: rgba(95, 170, 0, 180);\n"
+"	background-color: rgba(255, 255, 255, 0);\n"
+"	font-family: \"Segoe UI\";\n"
+"	font-size :11px;\n"
+"}"));
         centralWidget = new QWidget(ShadowPlayer);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         playButton = new QPushButton(centralWidget);
@@ -766,6 +832,15 @@ public:
         loadLrcButton = new QPushButton(lyricsBox);
         loadLrcButton->setObjectName(QStringLiteral("loadLrcButton"));
         loadLrcButton->setGeometry(QRect(200, 0, 61, 23));
+        offsetSlider = new QSlider(lyricsBox);
+        offsetSlider->setObjectName(QStringLiteral("offsetSlider"));
+        offsetSlider->setGeometry(QRect(291, 27, 22, 131));
+        offsetSlider->setMinimum(-9000);
+        offsetSlider->setMaximum(9000);
+        offsetSlider->setOrientation(Qt::Vertical);
+        offsetLabel = new QPushButton(lyricsBox);
+        offsetLabel->setObjectName(QStringLiteral("offsetLabel"));
+        offsetLabel->setGeometry(QRect(272, 160, 61, 21));
         extraButton = new QPushButton(centralWidget);
         extraButton->setObjectName(QStringLiteral("extraButton"));
         extraButton->setGeometry(QRect(340, 0, 21, 21));
@@ -1015,6 +1090,7 @@ public:
         lrcLabel_7->setText(QString());
         showDskLrcButton->setText(QApplication::translate("ShadowPlayer", "\346\241\214\351\235\242\346\255\214\350\257\215", 0));
         loadLrcButton->setText(QApplication::translate("ShadowPlayer", "\351\200\211\346\213\251\346\226\207\344\273\266", 0));
+        offsetLabel->setText(QApplication::translate("ShadowPlayer", "lrcOffset", 0));
         extraButton->setText(QApplication::translate("ShadowPlayer", "\342\206\222", 0));
         closeButton->setText(QString());
         setSkinButton->setText(QString());
