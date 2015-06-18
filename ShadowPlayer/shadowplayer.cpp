@@ -112,7 +112,7 @@ ShadowPlayer::ShadowPlayer(QWidget *parent) :
     aspectRatio = 0;//图片宽高比，用于动态缩放
 
     playMode = 2;//播放模式 0.单曲播放 1.单曲循环 2.顺序播放 3.列表循环 4.随机播放
-    playlistMode = true;////播放列表使用的模式 true.61模式 false.bl模式
+    playlistMode = false;////播放列表使用的模式 true.61模式 false.bl模式
     isReverse = false;//默认不倒放
 
     nowPlaying = "暂时没有播放任何文件哦";//播放列表bl使用模式，ab循环保存loop文件时也用得到

@@ -33,6 +33,7 @@ public:
     QString getCurFile();
     QString getSelFile();
     QString playLast();//播放列表末尾文件
+    void timeListUpdate();
     void tableUpdate();//更新显示内容
     void sortPlayList(int howToSort);//为播放列表排序表
     void saveToFile(QString fileName);

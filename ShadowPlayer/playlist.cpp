@@ -240,6 +240,19 @@ QString PlayList::playLast()
     }
 }
 
+void PlayList::timeListUpdate()
+{
+    //暂时不想重写播放列表了，先写个这个顶着。。
+    //61竟然把timeList和fileList分开存了。。。。。。。。
+    //解决排序后时间不照号的问题，完事儿后建议tableUpdate重画table
+    int count = fileList.size();//循环效率优化
+    timeList.clear();
+    for (int i = 0; i < count; i++) {
+        timeList.append(player->getFileTotalTime(fileList.at(i)));
+    }
+    return;
+}
+
 //刷新表格
 void PlayList::tableUpdate()
 {
@@ -872,6 +885,7 @@ void PlayList::sortPlayList(int howToSort) {
     //QMessageBox::information(0, "执行了排序啦", "刚刚执行了排序啦_(:з」∠)_", "shenmegui");
 
     //设置索引暂略
+    timeListUpdate();//根据排序后的表刷新时间List..
     tableUpdate();
 }
 
