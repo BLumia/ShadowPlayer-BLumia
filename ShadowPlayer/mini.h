@@ -20,6 +20,7 @@ public:
     ~miniForm();
     void showMiniForm(int monitorID);
     int curMonitor;
+    void updateCurMonitorID(int id);
 
 signals:
     void on_playBtn_clicked();

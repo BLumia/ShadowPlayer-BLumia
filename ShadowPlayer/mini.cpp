@@ -33,7 +33,7 @@ miniForm::miniForm(QWidget *parent, Player *plr) :
     QDesktopWidget * desktop = QApplication::desktop();
     QRect rect = desktop->availableGeometry();
     miRPos = rect.width();//初始为屏幕宽度
-    curMonitor = -1;
+    curMonitor = desktop->primaryScreen();
     this->setGeometry(miRPos - this->width() , rect.y() + 25, this->width(), this->height());//win标题栏高度预留25，点x用
 }
 
@@ -42,6 +42,10 @@ miniForm::~miniForm()
     delete ui;
     delete hideAnimation;
     delete sizeSlideAnimation;
+}
+
+void miniForm::updateCurMonitorID(int id) {
+    this->curMonitor = id;
 }
 
 void miniForm::showMiniForm(int monitorID)

@@ -37,7 +37,7 @@ ShadowPlayer::ShadowPlayer(QWidget *parent) :
     lrcTimer = new QTimer(this);//歌词显示定时器
 
     lb = new LrcBar(lyrics, player, 0);//传递对象指针以便访问
-    curMonitor = 0;
+    curMonitor = QApplication::desktop()->primaryScreen();
     playing = false;
     lyrics->lrcOffset = 0;//当前歌词时间偏移量（ms）
     this->setWindowIcon(QIcon(":icon/ICO/ShadowPlayer.ico"));//设置窗口图标
@@ -1868,7 +1868,7 @@ void ShadowPlayer::loadSkinData()
     QDataStream stream(&file);
     quint32 magic;
     stream >> magic;
-    if (magic == 0x61727481)
+    if (magic == 0x61727481) //61616~
     {
         stream >> this->skin;
         skinLeft = skin.scaledToWidth(360, Qt::SmoothTransformation);
@@ -1970,7 +1970,11 @@ void ShadowPlayer::on_setAbPointBtn_clicked()
 }
 
 void ShadowPlayer::on_miniPlayer_clicked()
-{
+{ 
+    //窗口所在屏幕
+    QDesktopWidget * deskTop = QApplication::desktop();
+    this->curMonitor = deskTop->screenNumber ( this );
+
     miniUi->showMiniForm(this->curMonitor);
     //显示托盘图标
     trayicon->show();
