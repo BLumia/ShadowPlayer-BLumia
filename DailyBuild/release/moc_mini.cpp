@@ -20,7 +20,7 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_miniForm_t {
     QByteArrayData data[19];
-    char stringdata[294];
+    char stringdata[290];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -34,24 +34,24 @@ QT_MOC_LITERAL(1, 9, 18),
 QT_MOC_LITERAL(2, 28, 0),
 QT_MOC_LITERAL(3, 29, 22),
 QT_MOC_LITERAL(4, 52, 22),
-QT_MOC_LITERAL(5, 75, 22),
-QT_MOC_LITERAL(6, 98, 18),
-QT_MOC_LITERAL(7, 117, 14),
-QT_MOC_LITERAL(8, 132, 33),
-QT_MOC_LITERAL(9, 166, 6),
-QT_MOC_LITERAL(10, 173, 12),
-QT_MOC_LITERAL(11, 186, 5),
-QT_MOC_LITERAL(12, 192, 12),
-QT_MOC_LITERAL(13, 205, 8),
-QT_MOC_LITERAL(14, 214, 24),
-QT_MOC_LITERAL(15, 239, 10),
-QT_MOC_LITERAL(16, 250, 14),
-QT_MOC_LITERAL(17, 265, 8),
-QT_MOC_LITERAL(18, 274, 19)
+QT_MOC_LITERAL(5, 75, 18),
+QT_MOC_LITERAL(6, 94, 18),
+QT_MOC_LITERAL(7, 113, 14),
+QT_MOC_LITERAL(8, 128, 33),
+QT_MOC_LITERAL(9, 162, 6),
+QT_MOC_LITERAL(10, 169, 12),
+QT_MOC_LITERAL(11, 182, 5),
+QT_MOC_LITERAL(12, 188, 12),
+QT_MOC_LITERAL(13, 201, 8),
+QT_MOC_LITERAL(14, 210, 24),
+QT_MOC_LITERAL(15, 235, 10),
+QT_MOC_LITERAL(16, 246, 14),
+QT_MOC_LITERAL(17, 261, 8),
+QT_MOC_LITERAL(18, 270, 19)
     },
     "miniForm\0on_playBtn_clicked\0\0"
     "on_playNextBtn_clicked\0on_playPrevBtn_clicked\0"
-    "on_playModeBtn_clicked\0on_muteBtn_clicked\0"
+    "on_stopBtn_clicked\0on_muteBtn_clicked\0"
     "showMainPlayer\0QSystemTrayIcon::ActivationReason\0"
     "reason\0nowPlayValue\0value\0refreshTitle\0"
     "curTitle\0on_mainPlayerBtn_clicked\0"
@@ -116,7 +116,7 @@ void miniForm::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         case 0: _t->on_playBtn_clicked(); break;
         case 1: _t->on_playNextBtn_clicked(); break;
         case 2: _t->on_playPrevBtn_clicked(); break;
-        case 3: _t->on_playModeBtn_clicked(); break;
+        case 3: _t->on_stopBtn_clicked(); break;
         case 4: _t->on_muteBtn_clicked(); break;
         case 5: _t->showMainPlayer((*reinterpret_cast< QSystemTrayIcon::ActivationReason(*)>(_a[1]))); break;
         case 6: _t->nowPlayValue((*reinterpret_cast< int(*)>(_a[1]))); break;
@@ -150,7 +150,7 @@ void miniForm::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         }
         {
             typedef void (miniForm::*_t)();
-            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&miniForm::on_playModeBtn_clicked)) {
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&miniForm::on_stopBtn_clicked)) {
                 *result = 3;
             }
         }
@@ -230,7 +230,7 @@ void miniForm::on_playPrevBtn_clicked()
 }
 
 // SIGNAL 3
-void miniForm::on_playModeBtn_clicked()
+void miniForm::on_stopBtn_clicked()
 {
     QMetaObject::activate(this, &staticMetaObject, 3, 0);
 }

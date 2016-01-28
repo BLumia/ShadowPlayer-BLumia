@@ -18,13 +18,14 @@ class miniForm : public QWidget
 public:
     explicit miniForm(QWidget *parent = 0, Player *plr = 0);//第二的参数应该是player
     ~miniForm();
-    void showMiniForm();   
+    void showMiniForm(int monitorID);
+    int curMonitor;
 
 signals:
     void on_playBtn_clicked();
     void on_playNextBtn_clicked();
     void on_playPrevBtn_clicked();
-    void on_playModeBtn_clicked();
+    void on_stopBtn_clicked();
     void on_muteBtn_clicked();
     void showMainPlayer(QSystemTrayIcon::ActivationReason reason);
     void nowPlayValue(int value);
@@ -47,6 +48,7 @@ private slots:
     void hideMiniUi();
     void setSliderValue(int intvalue);
     void setSliderValueClick(int intvalue);
+
 
 protected:
     //void paintEvent(QPaintEvent *);

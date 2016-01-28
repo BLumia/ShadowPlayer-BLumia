@@ -37,11 +37,14 @@ ShadowPlayer::ShadowPlayer(QWidget *parent) :
     lrcTimer = new QTimer(this);//歌词显示定时器
 
     lb = new LrcBar(lyrics, player, 0);//传递对象指针以便访问
+    curMonitor = 0;
     playing = false;
     lyrics->lrcOffset = 0;//当前歌词时间偏移量（ms）
     this->setWindowIcon(QIcon(":icon/ICO/ShadowPlayer.ico"));//设置窗口图标
-    this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowSystemMenuHint | Qt::WindowMinimizeButtonHint);//无边框
-    this->setAttribute(Qt::WA_TranslucentBackground, true);//背景透明
+    if (!QFileInfo(QCoreApplication::applicationDirPath() + "/Stream.mod").exists()) {
+        this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowSystemMenuHint | Qt::WindowMinimizeButtonHint);//无边框
+        this->setAttribute(Qt::WA_TranslucentBackground, true);//背景透明
+    }
     ui->coverLabel->setScaledContents(true);//自动缩放内容
     ui->coverLabel->setPixmap(QPixmap(":image/image/ShadowPlayer.png"));
 
@@ -1117,6 +1120,10 @@ void ShadowPlayer::mouseReleaseEvent(QMouseEvent *)
 {
     clickOnFrame = false;//弹起鼠标按键时，恢复
     clickOnLeft = false;
+
+    //移动后更新窗体所在屏幕
+    QDesktopWidget * deskTop = QApplication::desktop();
+    this->curMonitor = deskTop->screenNumber ( this );
 }
 
 void ShadowPlayer::mouseMoveEvent(QMouseEvent *event)
@@ -1964,7 +1971,7 @@ void ShadowPlayer::on_setAbPointBtn_clicked()
 
 void ShadowPlayer::on_miniPlayer_clicked()
 {
-    miniUi->showMiniForm();
+    miniUi->showMiniForm(this->curMonitor);
     //显示托盘图标
     trayicon->show();
     //在系统托盘显示气泡消息提示

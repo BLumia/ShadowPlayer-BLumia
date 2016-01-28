@@ -37,6 +37,7 @@ public:
     void blsmtPlay(QStringList files);//关联播放时传递的参数必定是QStringList，但只处理一个文件
     bool playlistMode;//播放列表使用的模式 true.61模式 false.bl模式
     //void sendCurTitle(QString curTitle);
+    int curMonitor; //currect screen, or say.. monitor
 
 signals:
     void sendCurTitle(QString curTitle);
