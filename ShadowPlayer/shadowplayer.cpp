@@ -1493,6 +1493,9 @@ void ShadowPlayer::blsmtPlay(QStringList files)
     if (length == 1)
     {
         QFileInfo fileInfo(files[0]);
+        if (fileInfo.exists()){ //简单判定
+            loadFile(files[0]);
+        }
         if (nowPlayingPath == fileInfo.path())
         {
             if (!playList->justSearch(fileInfo.fileName())){
@@ -1507,10 +1510,7 @@ void ShadowPlayer::blsmtPlay(QStringList files)
                 playList->setSelectedByIndex(playList->getLength() -1);
             }
         }
-        if (playList->getLength() > 0){ //简单判定
-            loadFile(playList->getSelFile());
-            playList->tableUpdate();
-        }
+        playList->tableUpdate(); //无论如何都刷新列表
     }
 }
 
