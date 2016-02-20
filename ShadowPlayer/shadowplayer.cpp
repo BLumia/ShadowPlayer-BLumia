@@ -1492,11 +1492,12 @@ void ShadowPlayer::blsmtPlay(QStringList files)
     int length = files.length();
     if (length == 1)
     {
+        QString lastPlayedPath = nowPlayingPath;
         QFileInfo fileInfo(files[0]);
         if (fileInfo.exists()){ //简单判定
             loadFile(files[0]);
         }
-        if (nowPlayingPath == fileInfo.path())
+        if (lastPlayedPath == fileInfo.path())
         {
             if (!playList->justSearch(fileInfo.fileName())){
                 playList->add(files[0]);
@@ -1519,8 +1520,12 @@ void ShadowPlayer::blsmtPlay(QString file)
     //计划的情况只处理一个文件，如果文件列表出现多个文件的情况那就有问题了
     if (!file.isEmpty())
     {
+        QString lastPlayedPath = nowPlayingPath;
         QFileInfo fileInfo(file);
-        if (nowPlayingPath == fileInfo.path())
+        if (fileInfo.exists()){ //简单判定
+            loadFile(playList->getSelFile());
+        }
+        if (lastPlayedPath == fileInfo.path())
         {
             if (!playList->justSearch(fileInfo.fileName())){
                 playList->add(file);
@@ -1534,10 +1539,7 @@ void ShadowPlayer::blsmtPlay(QString file)
                 playList->setSelectedByIndex(playList->getLength() -1);
             }
         }
-        if (playList->getLength() > 0){ //简单判定
-            loadFile(playList->getSelFile());
-            playList->tableUpdate();
-        }
+        playList->tableUpdate(); //无论如何都刷新列表
     }
 }
 
