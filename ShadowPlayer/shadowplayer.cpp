@@ -1494,16 +1494,17 @@ void ShadowPlayer::blsmtPlay(QStringList files)
     {
         QString lastPlayedPath = nowPlayingPath;
         QFileInfo fileInfo(files[0]);
-        if (fileInfo.exists()){ //简单判定
-            loadFile(files[0]);
-        }
+
         if (lastPlayedPath == fileInfo.path())
         {
             if (!playList->justSearch(fileInfo.fileName())){
                 playList->add(files[0]);
                 playList->setSelectedByIndex(playList->getLength() -1);
             }
+            //JustSearch会更新当前选中的文件为被搜索的文件，所以直接调用选中
+            loadFile(playList->getSelFile());
         } else {
+            loadFile(files[0]); //TODO: 判断是否歌曲
             playList->clearAll();
             playList->loadFromFloder(fileInfo.path());
             if (!playList->justSearch(fileInfo.fileName())){
@@ -1511,6 +1512,7 @@ void ShadowPlayer::blsmtPlay(QStringList files)
                 playList->setSelectedByIndex(playList->getLength() -1);
             }
         }
+
         playList->tableUpdate(); //无论如何都刷新列表
     }
 }
@@ -1522,16 +1524,18 @@ void ShadowPlayer::blsmtPlay(QString file)
     {
         QString lastPlayedPath = nowPlayingPath;
         QFileInfo fileInfo(file);
-        if (fileInfo.exists()){ //简单判定
-            loadFile(playList->getSelFile());
-        }
         if (lastPlayedPath == fileInfo.path())
         {
+            //目录已经对应了
             if (!playList->justSearch(fileInfo.fileName())){
+                //列表中没有，添加并播放新加的条目
                 playList->add(file);
                 playList->setSelectedByIndex(playList->getLength() -1);
             }
+            loadFile(playList->getSelFile());
         } else {
+            //从目录载入所有歌曲并播放
+            loadFile(file); //TODO: 判断是否歌曲
             playList->clearAll();
             playList->loadFromFloder(fileInfo.path());
             if (!playList->justSearch(fileInfo.fileName())){
