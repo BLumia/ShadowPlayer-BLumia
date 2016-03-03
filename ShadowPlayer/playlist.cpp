@@ -855,9 +855,9 @@ bool smartFileNameSort(const QString s1,const QString s2) {
         }
         int r = QString::localeAwareCompare(c1, c2);
         if (r < 0)
-            return -1;
+            return true;
         if (r > 0)
-            return 1;
+            return false;
     }
     // The two strings are the same (02 == 2) so fall back to the normal sort
     return QString::compare(s1, s2)==-1?true:false;
