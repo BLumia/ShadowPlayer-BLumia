@@ -22,6 +22,26 @@ bool checkOnly()
 }
 #endif
 
+// this function is from https://github.com/qt/qtbase/blob/46ffca13fb0705c54ad05bc2c1a37f7d5fb5132d/src/plugins/platforms/windows/qwindowscontext.cpp#L510
+QString classNamePrefix()
+{
+    static QString result;
+    if (result.isEmpty()) {
+        QTextStream str(&result);
+        str << "Qt" << QT_VERSION_MAJOR << QT_VERSION_MINOR << QT_VERSION_PATCH;
+        if (QLibraryInfo::isDebugBuild())
+            str << 'd';
+#ifdef QT_NAMESPACE
+#  define xstr(s) str(s)
+#  define str(s) #s
+        str << xstr(QT_NAMESPACE);
+#  undef str
+#  undef xstr
+#endif
+    }
+    return result;
+}
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
@@ -30,12 +50,13 @@ int main(int argc, char *argv[])
     if(!checkOnly())
     {
         QString file = QString::fromLocal8Bit(argv[1]);
+        QString windowClassName = QString("%1QWindowIcon").arg(classNamePrefix());
 
         COPYDATASTRUCT cpd;
         cpd.dwData = 0;
         cpd.cbData = file.toUtf8().size() + 1;// + 1 是为了在末尾创建一个00（字符串终止）
         cpd.lpData = file.toUtf8().data();
-        HWND hWnd = FindWindowW(L"Qt5QWindowIcon", L"ShadowPlayer");
+        HWND hWnd = FindWindowW(reinterpret_cast<const wchar_t *>(windowClassName.utf16()), L"ShadowPlayer");
         SendMessageW(hWnd, WM_COPYDATA, NULL, (LPARAM)&cpd);
         return -1;//退出
     }

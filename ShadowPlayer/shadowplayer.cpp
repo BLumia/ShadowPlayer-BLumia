@@ -840,14 +840,8 @@ void ShadowPlayer::showCoverPic(QString filePath){
     QString path = fileinfo.path();
 
     QFileInfo mapIDInfo(path);
-    QString maptitle = mapIDInfo.baseName();
-    char mapid[7];
-    sscanf(maptitle.toStdString().c_str(), "%s", mapid);
-    //QMessageBox::information(0, "mapid", maptitle+" "+mapid);
-    /*
-    if (QFileInfo(QCoreApplication::applicationDirPath() + "/cover").exists())
-        ui->coverLabel->setPixmap(QPixmap(QCoreApplication::applicationDirPath() + "/cover"));
-    */
+    QString mapid = mapIDInfo.baseName().section(" ", 0, 0);
+
     if (spID3::loadPictureData(filePath.toLocal8Bit().data()))
     {
         QByteArray picData((const char*)spID3::getPictureDataPtr(), spID3::getPictureLength());
@@ -869,8 +863,8 @@ void ShadowPlayer::showCoverPic(QString filePath){
         ui->coverLabel->setPixmap(QPixmap(path + "/cover.gif"));
     else if (QFileInfo(path + "/bg.jpg").exists())        //osu! simple support solution.
         ui->coverLabel->setPixmap(QPixmap(path + "/bg.jpg"));
-    else if (QFileInfo(path + "/../../Data/bt/"+mapid+".jpg").exists())//osu! support solution.
-        ui->coverLabel->setPixmap(QPixmap(path + "/../../Data/bt/"+mapid+".jpg"));
+    else if (QFileInfo(path + "/../../Data/bt/"+ mapid +".jpg").exists())//osu! support solution.
+        ui->coverLabel->setPixmap(QPixmap(path + "/../../Data/bt/"+ mapid +".jpg"));
     else
         ui->coverLabel->setPixmap(QPixmap(":image/image/ShadowPlayer.png"));
 }
