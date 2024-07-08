@@ -18,18 +18,20 @@ ShadowPower 于2014/8/1 夜间
 #include <memory.h>
 #include <cstring>
 
+namespace teji {
 typedef unsigned char byte;
+}
 using namespace std;
 
 namespace spFLAC {
 	//Flac元数据块头部结构体定义
 	struct FlacMetadataBlockHeader
 	{
-		byte flag;		//标志位，高1位：是否为最后一个数据块，低7位：数据块类型
-		byte length[3];	//数据块长度，不含数据块头部
+		teji::byte flag;		//标志位，高1位：是否为最后一个数据块，低7位：数据块类型
+		teji::byte length[3];	//数据块长度，不含数据块头部
 	};
 
-	byte *pPicData = 0;		//指向图片数据的指针
+	teji::byte *pPicData = 0;		//指向图片数据的指针
 	int picLength = 0;		//存放图片数据长度
 	char picFormat[4] = {};	//存放图片数据的格式（扩展名）
 
@@ -37,11 +39,11 @@ namespace spFLAC {
 	bool verificationPictureFormat(char *data)
 	{
 		//支持格式：JPEG/PNG/BMP/GIF
-		byte jpeg[2] = { 0xff, 0xd8 };
-		byte png[8] = { 0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a };
-		byte gif[6] = { 0x47, 0x49, 0x46, 0x38, 0x39, 0x61 };
-		byte gif2[6] = { 0x47, 0x49, 0x46, 0x38, 0x37, 0x61 };
-		byte bmp[2] = { 0x42, 0x4d };
+		teji::byte jpeg[2] = { 0xff, 0xd8 };
+		teji::byte png[8] = { 0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a };
+		teji::byte gif[6] = { 0x47, 0x49, 0x46, 0x38, 0x39, 0x61 };
+		teji::byte gif2[6] = { 0x47, 0x49, 0x46, 0x38, 0x37, 0x61 };
+		teji::byte bmp[2] = { 0x42, 0x4d };
 		memset(&picFormat, 0, 4);
 		if (memcmp(data, &jpeg, 2) == 0)
 		{
@@ -91,10 +93,10 @@ namespace spFLAC {
 			return false;
 		}
 		fseek(fp, 0, SEEK_SET);			//设文件流指针到文件头部
-		byte magic[4] = {};				//存放校验数据
+		teji::byte magic[4] = {};				//存放校验数据
 		memset(&magic, 0, 4);
 		fread(&magic, 4, 1, fp);			//读入校验数据
-		byte fLaC[4] = { 0x66, 0x4c, 0x61, 0x43 };
+		teji::byte fLaC[4] = { 0x66, 0x4c, 0x61, 0x43 };
 		if (memcmp(&magic, &fLaC, 4) == 0)
 		{
 			//数据校验正确，文件类型为Flac
@@ -182,7 +184,7 @@ namespace spFLAC {
 
 			//-----抵达图片数据区-----
 			picLength = blockLength - nonPicDataLength;		//计算图片数据长度
-			pPicData = new byte[picLength];					//动态分配图片数据内存空间
+			pPicData = new teji::byte[picLength];					//动态分配图片数据内存空间
 			memset(pPicData, 0, picLength);					//清空图片数据内存
 			fread(pPicData, picLength, 1, fp);				//得到图片数据
 			//------------------------
@@ -206,7 +208,7 @@ namespace spFLAC {
 	}
 
 	//取得指向图片数据的指针
-	byte *getPictureDataPtr()
+	teji::byte *getPictureDataPtr()
 	{
 		return pPicData;
 	}

@@ -18,7 +18,9 @@ ShadowPower 于2014/8/1
 #include <memory.h>
 #include <cstring>
 
+namespace teji {
 typedef unsigned char byte;
+}
 using namespace std;
 
 namespace spID3 {
@@ -26,27 +28,27 @@ namespace spID3 {
 	struct ID3V2Header
 	{
 		char  identi[3];//ID3头部校验，必须为“ID3”否则认为不存在ID3标签
-		byte  major;	//ID3版本号，3是ID3v2.3，4是ID3v2.4，以此类推
-		byte  revsion;	//ID3副版本号，此版本为00
-		byte  flags;    //标志位
-		byte  size[4];	//标签大小，不含标签头的10个字节
+		teji::byte  major;	//ID3版本号，3是ID3v2.3，4是ID3v2.4，以此类推
+		teji::byte  revsion;	//ID3副版本号，此版本为00
+		teji::byte  flags;    //标志位
+		teji::byte  size[4];	//标签大小，不含标签头的10个字节
 	};
 
 	//ID3v2标签帧头部结构体定义
 	struct ID3V2FrameHeader
 	{
 		char FrameId[4];//标识符，用于描述此标签帧的内容类型
-		byte size[4];	//标签帧的大小，不含标签头的10个字节  
-		byte flags[2];	//标志位  
+		teji::byte size[4];	//标签帧的大小，不含标签头的10个字节  
+		teji::byte flags[2];	//标志位  
 	};
 
 	struct ID3V22FrameHeader
 	{
 		char FrameId[3];//标识符，用于描述此标签帧的内容类型
-		byte size[3];	//标签帧的大小，不含标签头的6个字节  
+		teji::byte size[3];	//标签帧的大小，不含标签头的6个字节  
 	};
 
-	byte *pPicData = 0;		//指向图片数据的指针
+	teji::byte *pPicData = 0;		//指向图片数据的指针
 	int picLength = 0;		//存放图片数据长度
 	char picFormat[4] = {};	//存放图片数据的格式（扩展名）
 
@@ -54,11 +56,11 @@ namespace spID3 {
 	bool verificationPictureFormat(char *data)
 	{
 		//支持格式：JPEG/PNG/BMP/GIF
-		byte jpeg[2] = { 0xff, 0xd8 };
-		byte png[8] = { 0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a };
-		byte gif[6] = { 0x47, 0x49, 0x46, 0x38, 0x39, 0x61 };
-		byte gif2[6] = { 0x47, 0x49, 0x46, 0x38, 0x37, 0x61 };
-		byte bmp[2] = { 0x42, 0x4d };
+		teji::byte jpeg[2] = { 0xff, 0xd8 };
+		teji::byte png[8] = { 0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a };
+		teji::byte gif[6] = { 0x47, 0x49, 0x46, 0x38, 0x39, 0x61 };
+		teji::byte gif2[6] = { 0x47, 0x49, 0x46, 0x38, 0x37, 0x61 };
+		teji::byte bmp[2] = { 0x42, 0x4d };
 		memset(&picFormat, 0, 4);
 		if (memcmp(data, &jpeg, 2) == 0)
 		{
@@ -137,7 +139,7 @@ namespace spID3 {
 			if (hasExtendedHeader)
 			{
 				//如果有扩展头
-				byte extendedHeaderSize[4] = {};
+				teji::byte extendedHeaderSize[4] = {};
 				memset(&extendedHeaderSize, 0, 4);
 				fread(&extendedHeaderSize, 4, 1, fp);
 				//取得扩展头大小（不含以上数据）
@@ -250,7 +252,7 @@ namespace spID3 {
 			}
 			//-----真正的图片数据-----
 			picLength = frameLength - nonPicDataLength;		//计算图片数据长度
-			pPicData = new byte[picLength];					//动态分配图片数据内存空间
+			pPicData = new teji::byte[picLength];					//动态分配图片数据内存空间
 			memset(pPicData, 0, picLength);					//清空图片数据内存
 			fread(pPicData, picLength, 1, fp);				//得到图片数据
 			//------------------------
@@ -349,7 +351,7 @@ namespace spID3 {
 			}
 			//-----真正的图片数据-----
 			picLength = frameLength - nonPicDataLength;		//计算图片数据长度
-			pPicData = new byte[picLength];					//动态分配图片数据内存空间
+			pPicData = new teji::byte[picLength];					//动态分配图片数据内存空间
 			memset(pPicData, 0, picLength);					//清空图片数据内存
 			fread(pPicData, picLength, 1, fp);				//得到图片数据
 			//------------------------
@@ -372,7 +374,7 @@ namespace spID3 {
 	}
 
 	//取得指向图片数据的指针
-	byte *getPictureDataPtr()
+	teji::byte *getPictureDataPtr()
 	{
 		return pPicData;
 	}

@@ -260,6 +260,7 @@ void PlayList::tableUpdate()
     //否则将造成循环递归
     ui->playListTable->clear();
     ui->playListTable->setRowCount(getLength());//删除项目后，更改表格总行数，防止出现空白行。
+    //ui->playListTable->setTextElideMode(Qt::ElideLeft); 文本过长时省略左侧文本，效果不好
     int count = fileList.size();//循环效率优化
     //重新生成表格项目
     for (int i = 0; i < count; i++)

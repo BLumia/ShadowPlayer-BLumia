@@ -1,9 +1,9 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 #include "bass.h"
-#include "bass_ape.h"
+#include "bassape.h"
 #include "bass_aac.h"
-#include "bass_alac.h"
+#include "bassalac.h"
 #include "bass_tta.h"
 #include "bassflac.h"
 #include "basswma.h"
