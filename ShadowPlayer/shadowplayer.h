@@ -72,6 +72,7 @@ private slots:
     void physicsSetting();
     void enableFFTPhysics();
     void disableFFTPhysics();
+    void playRandomSong();
     void on_miniSizeButton_clicked();
     void on_playModeButton_clicked();
     void on_loadLrcButton_clicked();

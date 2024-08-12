@@ -795,7 +795,7 @@ bool PlayList::listFileCopyer(){
         QMessageBox::information(0, "诶？", "列表竟然是空的呐_(:з」∠)_", "一定哪里搞错了...");
         return false;
     }
-    QMessageBox::information(0, "It's done", "完成啦\(^.^)//\n一共复制了"+ QString::number(copied,10)+"个新曲目，另有"+ QString::number(same,10)+"个已有项目被跳过", "好棒~");
+    QMessageBox::information(0, "It's done", "完成啦\\(^.^)//\n一共复制了"+ QString::number(copied,10)+"个新曲目，另有"+ QString::number(same,10)+"个已有项目被跳过", "好棒~");
     return true;
 }
 
@@ -874,13 +874,13 @@ void PlayList::sortPlayList(int howToSort) {
     //fileList排序
     switch (howToSort) {
         case 1:
-            qSort(fileList.begin(),fileList.end(),smartFileNameSort);
+            std::sort(fileList.begin(),fileList.end(),smartFileNameSort);
             break;
         case 2:
-            qSort(fileList.begin(),fileList.end(),foolishFileNameSort);
+            std::sort(fileList.begin(),fileList.end(),foolishFileNameSort);
             break;
         default :
-            qSort(fileList.begin(),fileList.end(),smartFileNameSort);
+            std::sort(fileList.begin(),fileList.end(),smartFileNameSort);
     }
     //设置当前播放索引并重绘表格
     //QMessageBox::information(0, "执行了排序啦", "刚刚执行了排序啦_(:з」∠)_", "shenmegui");

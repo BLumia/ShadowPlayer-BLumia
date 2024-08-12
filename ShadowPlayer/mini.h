@@ -18,9 +18,7 @@ class miniForm : public QWidget
 public:
     explicit miniForm(QWidget *parent = 0, Player *plr = 0);//第二的参数应该是player
     ~miniForm();
-    void showMiniForm(int monitorID);
-    int curMonitor;
-    void updateCurMonitorID(int id);
+    void showMiniForm(const QScreen* screen);
 
 signals:
     void on_playBtn_clicked();

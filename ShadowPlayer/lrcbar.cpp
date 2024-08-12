@@ -34,7 +34,7 @@ LrcBar::LrcBar(Lyrics *lrc, Player *plr, QWidget *parent) :
     timer->start(30);
 
     //设置起始位置
-    this->setGeometry((QApplication::desktop()->screenGeometry().width() - this->width()) / 2, QApplication::desktop()->screenGeometry().height() - 130, this->width(), this->height());
+    this->setGeometry((QApplication::primaryScreen()->geometry().width() - this->width()) / 2, QApplication::primaryScreen()->geometry().height() - 130, this->width(), this->height());
     this->setFixedSize(this->width(), this->height());
 
     this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint | Qt::Tool);
@@ -106,7 +106,7 @@ void LrcBar::paintEvent(QPaintEvent *)
     painter.setRenderHint(QPainter::Antialiasing, true);//绘图抗锯齿
 
     QFontMetrics fm(font);//字体参数，用于计算
-    int lrcWidth = fm.width(curLrc);//歌词文本宽度
+    int lrcWidth = fm.horizontalAdvance(curLrc);//歌词文本宽度
     double curTimePos = lyrics->getTimePos(player->getCurTimeMS()+lyrics->lrcOffset);//当前时间点
     int maskWidth = lrcWidth * curTimePos;//计算出当前时间变色文本的宽度
 
@@ -114,7 +114,7 @@ void LrcBar::paintEvent(QPaintEvent *)
     //原先的实现方式是Qt::AlignCenter绘制固定文本，然后动态变色文本用自己计算的位置
     //某些特殊长度时，会出现1px的偏移
 
-    if (fm.width(curLrc) < this->width())
+    if (fm.horizontalAdvance(curLrc) < this->width())
     {
         //如果文本宽度没有超出窗口宽度
         int startXPos = this->width()/2 - lrcWidth/2;//歌词起始点（绘制在中央）

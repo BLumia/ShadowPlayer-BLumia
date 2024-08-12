@@ -31,9 +31,8 @@ miniForm::miniForm(QWidget *parent, Player *plr) :
     }
 
     QDesktopWidget * desktop = QApplication::desktop();
-    QRect rect = desktop->availableGeometry();
+    QRect rect = QApplication::primaryScreen()->availableGeometry();
     miRPos = rect.width();//初始为屏幕宽度
-    curMonitor = desktop->primaryScreen();
     this->setGeometry(miRPos - this->width() , rect.y() + 25, this->width(), this->height());//win标题栏高度预留25，点x用
 }
 
@@ -44,18 +43,12 @@ miniForm::~miniForm()
     delete sizeSlideAnimation;
 }
 
-void miniForm::updateCurMonitorID(int id) {
-    this->curMonitor = id;
-}
-
-void miniForm::showMiniForm(int monitorID)
+void miniForm::showMiniForm(const QScreen * screen)
 {
     hideAnimation->stop();//如果正在淡出窗口，中止淡出动画
 
     //移动窗体到指定监视器
-    this->curMonitor = monitorID;
-    QDesktopWidget * desktop = QApplication::desktop();
-    QRect rect = desktop->availableGeometry(this->curMonitor);
+    QRect rect = screen->availableGeometry();
     miRPos = rect.x() + rect.width();
     this->setGeometry(miRPos - this->width() , rect.y() + 25, this->width(), this->height());
 
@@ -82,18 +75,17 @@ void miniForm::refreshTitle(QString curTitle)
     //设置迷你窗口标题
     ui->titleLabel->setText(curTitle);
 
-    QDesktopWidget * desktop = QApplication::desktop();
-    QRect rect = desktop->availableGeometry(this->curMonitor);
+    QRect rect = this->screen()->availableGeometry();
     miRPos = rect.x() + rect.width();
 
     //动画相关
     QFontMetrics titleFontMetrics(ui->titleLabel->font());
     int miX,miY,miWidth,miHeight;//均为根据标题长度而定的新数据
-    miX = miRPos - (titleFontMetrics.width(curTitle) + 110);
+    miX = miRPos - (titleFontMetrics.horizontalAdvance(curTitle) + 110);
     miY = this->geometry().y();
-    miWidth = titleFontMetrics.width(curTitle) + 110;
+    miWidth = titleFontMetrics.horizontalAdvance(curTitle) + 110;
     miHeight = this->geometry().height();
-    if ((titleFontMetrics.width(curTitle) > 146) &&(titleFontMetrics.width(curTitle) < 572))
+    if ((titleFontMetrics.horizontalAdvance(curTitle) > 146) &&(titleFontMetrics.horizontalAdvance(curTitle) < 572))
     {
         sizeSlideAnimation->stop();
         sizeSlideAnimation->setStartValue(QRect(this->geometry().x(), this->geometry().y(), this->geometry().width(), this->geometry().height()));
@@ -102,7 +94,7 @@ void miniForm::refreshTitle(QString curTitle)
     } else {
         sizeSlideAnimation->stop();
         sizeSlideAnimation->setStartValue(QRect(this->geometry().x(), this->geometry().y(), this->geometry().width(), this->geometry().height()));
-        if (titleFontMetrics.width(curTitle) <= 146)
+        if (titleFontMetrics.horizontalAdvance(curTitle) <= 146)
             sizeSlideAnimation->setEndValue(QRect(miRPos - 256, miY, 256, miHeight));
         else
             sizeSlideAnimation->setEndValue(QRect(miRPos - 682, miY, 682, miHeight));
@@ -127,17 +119,6 @@ void miniForm::mousePressEvent(QMouseEvent *event)
 void miniForm::mouseReleaseEvent(QMouseEvent *)
 {
     clickOnFrame = false;//弹起鼠标按键时，恢复
-
-    //移动后更新窗体所在屏幕
-    QDesktopWidget * desktop = QApplication::desktop();
-    this->curMonitor = desktop->screenNumber ( this );
-    /* Debug
-    QRect rect = desktop->availableGeometry(this->curMonitor);
-    miRPos = rect.width();//初始为屏幕宽度
-    QMessageBox::information(this, "Debug<Monitor "+QString::number(curMonitor, 10)+">",
-                             "rect.width"+QString::number(rect.width(), 10)+"rect.x"+QString::number(rect.x(), 10)+
-                             "\nrect.height"+QString::number(rect.height(), 10)+"rect.y"+QString::number(rect.y(), 10));
-    */
 }
 
 void miniForm::mouseMoveEvent(QMouseEvent *event)

@@ -13,7 +13,7 @@ OSD::OSD(QWidget *parent) :
     this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint | Qt::Tool);
     this->setAttribute(Qt::WA_TranslucentBackground);
 
-    this->setGeometry(QApplication::desktop()->screenGeometry().width() - this->width(), 80, this->width(), this->height());
+    this->setGeometry(QApplication::primaryScreen()->geometry().width() - this->width(), 80, this->width(), this->height());
     this->setFixedSize(this->width(), this->height());
 
     hideAnimation = new QPropertyAnimation(this, "windowOpacity");
@@ -75,7 +75,7 @@ void OSD::showOSD(QString tags, QString totalTime)
     this->setWindowOpacity(1);
 
     QFontMetrics titleFontMetrics(ui->titleLabel->font());
-    if (titleFontMetrics.width(tags) > 281)
+    if (titleFontMetrics.horizontalAdvance(tags) > 281)
     {
         ui->titleLabel->setAlignment(Qt::AlignTop | Qt::AlignLeft);
         ui->titleLabel->setWordWrap(true);

@@ -37,7 +37,6 @@ ShadowPlayer::ShadowPlayer(QWidget *parent) :
     lrcTimer = new QTimer(this);//歌词显示定时器
 
     lb = new LrcBar(lyrics, player, 0);//传递对象指针以便访问
-    curMonitor = QApplication::desktop()->primaryScreen();
     playing = false;
     lyrics->lrcOffset = 0;//当前歌词时间偏移量（ms）
     this->setWindowIcon(QIcon(":icon/ICO/ShadowPlayer.ico"));//设置窗口图标
@@ -778,13 +777,9 @@ void ShadowPlayer::UpdateTime()
             //随机播放
             if (playing)
             {
-                QTime time;
-                time = QTime::currentTime();
-                qsrand(time.msec() + time.second() * 1000);
-                int index = qrand() % playList->getLength();
-                //随机数
-                loadFile(playList->playIndex(index));
+                playRandomSong();
             }
+            break;
         default:
             break;
         }
@@ -1114,10 +1109,6 @@ void ShadowPlayer::mouseReleaseEvent(QMouseEvent *)
 {
     clickOnFrame = false;//弹起鼠标按键时，恢复
     clickOnLeft = false;
-
-    //移动后更新窗体所在屏幕
-    QDesktopWidget * deskTop = QApplication::desktop();
-    this->curMonitor = deskTop->screenNumber ( this );
 }
 
 void ShadowPlayer::mouseMoveEvent(QMouseEvent *event)
@@ -1552,16 +1543,7 @@ void ShadowPlayer::on_playPreButton_clicked()
         //列表循环
         loadFile(playList->previous(true));
     } else if (playMode == 4) {
-        if (!playList->isEmpty())//如果列表非空
-        {
-            //随机播放
-            QTime time;
-            time = QTime::currentTime();
-            qsrand(time.msec() + time.second() * 1000);
-            int index = qrand() % playList->getLength();
-            //随机数
-            loadFile(playList->playIndex(index));
-        }
+        playRandomSong();
     } else {
         //正常情况
         loadFile(playList->previous(false));
@@ -1579,16 +1561,7 @@ void ShadowPlayer::on_playNextButton_clicked()
         //列表循环
         loadFile(playList->next(true));
     } else if (playMode == 4) {
-        if (!playList->isEmpty())//如果列表非空
-        {
-            //随机播放
-            QTime time;
-            time = QTime::currentTime();
-            qsrand(time.msec() + time.second() * 1000);
-            int index = qrand() % playList->getLength();
-            //随机数
-            loadFile(playList->playIndex(index));
-        }
+        playRandomSong();
     } else {
         loadFile(playList->next(false));
     }
@@ -1717,6 +1690,17 @@ void ShadowPlayer::disableFFTPhysics()
     ui->FFTGroupBox->forceD = 0;
     ui->FFTGroupBox->elasticCoefficient = 0;
     ui->FFTGroupBox->minElasticStep = 0.02;
+}
+
+void ShadowPlayer::playRandomSong()
+{
+    if (!playList->isEmpty())//如果列表非空
+    {
+        //随机播放
+        int index = QRandomGenerator::global()->generate() % playList->getLength();
+        //随机数
+        loadFile(playList->playIndex(index));
+    }
 }
 
 void ShadowPlayer::resizeEvent(QResizeEvent *)
@@ -1971,11 +1955,7 @@ void ShadowPlayer::on_setAbPointBtn_clicked()
 
 void ShadowPlayer::on_miniPlayer_clicked()
 { 
-    //窗口所在屏幕
-    QDesktopWidget * deskTop = QApplication::desktop();
-    this->curMonitor = deskTop->screenNumber ( this );
-
-    miniUi->showMiniForm(this->curMonitor);
+    miniUi->showMiniForm(this->screen());
     //显示托盘图标
     trayicon->show();
     //在系统托盘显示气泡消息提示
