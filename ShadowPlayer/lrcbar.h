@@ -2,7 +2,7 @@
 #define LRCBAR_H
 
 #include <QWidget>
-#include "lyrics.h"
+#include "lyricsmanager.h"
 #include "player.h"
 #include <QtWidgets>
 #include <QtCore>
@@ -17,7 +17,7 @@ class LrcBar : public QWidget
     Q_OBJECT
 
 public:
-    explicit LrcBar(Lyrics *lrc, Player *plr, QWidget *parent);
+    explicit LrcBar(LyricsManager *lrc, Player *plr, QWidget *parent);
     ~LrcBar();
 
 private slots:
@@ -29,7 +29,7 @@ private slots:
 private:
     Ui::LrcBar *ui;
     QTimer *timer;
-    Lyrics *lyrics;
+    LyricsManager *lyrics;
     Player *player;
     QPoint pos;//用于窗口拖动，存储鼠标坐标
     bool clickOnFrame;

@@ -30,7 +30,7 @@ PRIVATE
     main.cpp
     shadowplayer.cpp shadowplayer.h
     player.cpp player.h
-    lyrics.cpp lyrics.h
+    lyricsmanager.cpp lyricsmanager.h
     lrcbar.cpp lrcbar.h
     spslider.cpp spslider.h
     playlist.cpp playlist.h

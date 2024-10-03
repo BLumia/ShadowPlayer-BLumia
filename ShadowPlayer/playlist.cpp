@@ -395,10 +395,10 @@ void PlayList::loadFromFloderAndSub(const QString path)
     }
 
     //获取所选文件类型过滤器
-    QStringList filters;
-    filters<<QString("*.mp3")<<QString("*.mp2")<<QString("*.mp1")<<QString("*.wav")
-           <<QString("*.aiff")<<QString("*.ogg")<<QString("*.ape")<<QString("*.m4a")
-           <<QString("*.flac")<<QString("*.aac")<<QString("*.wma");//差不多够了...
+    QStringList filters {
+        "*.mp3", "*.mp2", "*.mp1", "*.wav", "*.aiff", "*.ogg", "*.ape", "*.m4a",
+        "*.flac", "*.aac", "*.wma"
+    };
 
     //定义迭代器并设置过滤器
     QDirIterator dir_iterator(path,

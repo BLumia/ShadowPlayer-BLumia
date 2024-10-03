@@ -2,7 +2,7 @@
 #define SHADOWPLAYER_H
 #include <QMainWindow>
 #include "player.h"
-#include "lyrics.h"
+#include "lyricsmanager.h"
 #include "lrcbar.h"
 #include "playlist.h"
 #include "osd.h"
@@ -127,7 +127,7 @@ private:
 
     Player *player;
     PlayList *playList;
-    Lyrics *lyrics;
+    LyricsManager *lyrics;
     OSD *osd;
     miniForm *miniUi;
     QTimer *timer;

@@ -29,7 +29,7 @@ ShadowPlayer::ShadowPlayer(QWidget *parent) :
     //this->setFixedSize(this->width(), this->height());//锁定窗口大小
 
     player = new Player();//播放功能封装
-    lyrics = new Lyrics();//歌词功能封装
+    lyrics = new LyricsManager(this);//歌词功能封装
     playList = new PlayList(player, ui->playerListArea);
     osd = new OSD();
     miniUi = new miniForm(0,player);
@@ -38,7 +38,6 @@ ShadowPlayer::ShadowPlayer(QWidget *parent) :
 
     lb = new LrcBar(lyrics, player, 0);//传递对象指针以便访问
     playing = false;
-    lyrics->lrcOffset = 0;//当前歌词时间偏移量（ms）
     this->setWindowIcon(QIcon(":icon/ICO/ShadowPlayer.ico"));//设置窗口图标
     if (!QFileInfo(QCoreApplication::applicationDirPath() + "/Stream.mod").exists()) {
         this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowSystemMenuHint | Qt::WindowMinimizeButtonHint);//无边框
@@ -285,7 +284,6 @@ ShadowPlayer::~ShadowPlayer()
     delete lb;
     delete player;
     delete timer;
-    delete lyrics;
     delete playList;
     delete osd;
     delete miniUi;
@@ -332,7 +330,7 @@ void ShadowPlayer::dropEvent(QDropEvent *event)
     {
         loadSkin(fileName);
     } else if (fileName.toLower().endsWith(".lrc")) {
-        lyrics->resolve(fileName, true);
+        lyrics->loadLyrics(fileName);
     } else {
         addToListAndPlay(urls);
     }
@@ -656,10 +654,7 @@ void ShadowPlayer::loadFile(QString file)
         on_playButton_clicked();//点击播放按钮，开始播放
         */
 
-        if (!lyrics->resolve(file))//载入文件目录下的歌词文件
-            if(!lyrics->loadFromLrcDir(file))//失败则载入程序目录下的歌词
-                if(!lyrics->loadFromFileRelativePath(file, "/Lyrics/"))//失败则载入文件目录下子歌词目录的歌词
-                    lyrics->loadFromFileRelativePath(file, "/../Lyrics/");//新版百度音乐的路径
+        lyrics->loadLyrics(file);
 
         if (player->getTags() == "Show_File_Name")//Show_File_Name = 要显示文件名
             ui->tagLabel->setText(fileinfo.fileName());
@@ -789,17 +784,17 @@ void ShadowPlayer::UpdateTime()
 void ShadowPlayer::UpdateLrc()
 {
     //刷新歌词时间
-    lyrics->updateTime(player->getCurTimeMS()+lyrics->lrcOffset, player->getTotalTimeMS());
+    lyrics->updateCurrentTimeMs(player->getCurTimeMS(), player->getTotalTimeMS());
     double pos = 0;
-    double curTimePos = lyrics->getTimePos(player->getCurTimeMS()+lyrics->lrcOffset);
+    double curTimePos = lyrics->maskPercent(player->getCurTimeMS());
     //改变歌词文本
-    ui->lrcLabel_1->setText(lyrics->getLrcString(-3));
-    ui->lrcLabel_2->setText(lyrics->getLrcString(-2));
-    ui->lrcLabel_3->setText(lyrics->getLrcString(-1));
-    ui->lrcLabel_4->setText(lyrics->getLrcString(0));
-    ui->lrcLabel_5->setText(lyrics->getLrcString(1));
-    ui->lrcLabel_6->setText(lyrics->getLrcString(2));
-    ui->lrcLabel_7->setText(lyrics->getLrcString(3));
+    ui->lrcLabel_1->setText(lyrics->lyrics(-3));
+    ui->lrcLabel_2->setText(lyrics->lyrics(-2));
+    ui->lrcLabel_3->setText(lyrics->lyrics(-1));
+    ui->lrcLabel_4->setText(lyrics->lyrics(0));
+    ui->lrcLabel_5->setText(lyrics->lyrics(1));
+    ui->lrcLabel_6->setText(lyrics->lyrics(2));
+    ui->lrcLabel_7->setText(lyrics->lyrics(3));
 
     ui->lrcLabel_1->setToolTip(ui->lrcLabel_1->text());
     ui->lrcLabel_2->setToolTip(ui->lrcLabel_2->text());
@@ -1217,7 +1212,7 @@ void ShadowPlayer::on_loadLrcButton_clicked()
 {
     QString file = QFileDialog::getOpenFileName(this, QString::fromUtf8("载入歌词"),0,QString::fromUtf8("LRC歌词 (*.lrc)"));
     if(!file.isEmpty())
-        lyrics->resolve(file, true);
+        lyrics->loadLyrics(file);
 }
 
 void ShadowPlayer::on_playSlider_valueChanged(int value)
@@ -2025,13 +2020,13 @@ void ShadowPlayer::on_eqEnableCheckBox_clicked(bool checked)
 
 void ShadowPlayer::on_offsetSlider_valueChanged(int value)
 {
-    lyrics->lrcOffset = value;
+    lyrics->setTimeOffset(value);
     ui->offsetLabel->setText(QString::number(value, 10));
 }
 
 void ShadowPlayer::on_offsetLabel_clicked()
 {
-    lyrics->lrcOffset = 0;
+    lyrics->setTimeOffset(0);
     ui->offsetSlider->setValue(0);
     ui->offsetLabel->setText("lrcOffset");
 }
