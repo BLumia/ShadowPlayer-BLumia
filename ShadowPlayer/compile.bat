@@ -1,4 +1,10 @@
-set QTDIR=C:/Users/Gary/aqt/5.15.2/msvc2019_64
+set QTDIR=C:/Users/Gary/aqt/6.7.3/msvc2019_64
+set QT6WINEXTRA_CMAKE_DIR=C:/msys64/home/Gary/Source/qtwinextras/build/lib/cmake/Qt6WinExtras
+set M_CMAKE_USER_CFG_ARGS=-DQt6WinExtras_DIR='%QT6WINEXTRA_CMAKE_DIR%'
+set M_BUILD_DIR=build
+::set QTDIR=C:/Users/Gary/aqt/5.15.2/msvc2019_64
+::set M_CMAKE_USER_CFG_ARGS=-DPREFER_QT_5=ON
+::set M_BUILD_DIR=build5
 
 set VSLANG=1033
 set PATH=%PATH%;%QTDIR%/bin
@@ -23,18 +29,18 @@ if "%1"=="vs2022" (
 )
 
 :build
-cmake . -Bbuild %M_CMAKE_CFG_ARGS% || goto :error
-cmake --build build --config %M_BUILD_TYPE% || goto :error
+cmake . -B%M_BUILD_DIR% %M_CMAKE_CFG_ARGS% %M_CMAKE_USER_CFG_ARGS% || goto :error
+cmake --build %M_BUILD_DIR% --config %M_BUILD_TYPE% || goto :error
 
 :deploy
-windeployqt --no-translations --no-opengl-sw --no-system-d3d-compiler build/%M_BUILD_TYPE%/ShadowPlayer.exe
-robocopy ../bass-bin/x64 build/%M_BUILD_TYPE% *.dll
+windeployqt --no-translations --no-opengl-sw --no-system-d3d-compiler %M_BUILD_DIR%/%M_BUILD_TYPE%/ShadowPlayer.exe
+robocopy ../bass-bin/x64 %M_BUILD_DIR%/%M_BUILD_TYPE% *.dll
 echo Successfully built and deployed in %M_BUILD_TYPE% mode.
 goto :eof
 
 :: -------------------------------------------------
 :vs2022
-cmake . -Bbuild -G "Visual Studio 17 2022" || goto :error
+cmake . -B%M_BUILD_DIR% %M_CMAKE_USER_CFG_ARGS% -G "Visual Studio 17 2022" || goto :error
 goto :eof
 
 :: -------------------------------------------------

@@ -30,7 +30,6 @@ miniForm::miniForm(QWidget *parent, Player *plr) :
         this->setAttribute(Qt::WA_TranslucentBackground);
     }
 
-    QDesktopWidget * desktop = QApplication::desktop();
     QRect rect = QApplication::primaryScreen()->availableGeometry();
     miRPos = rect.width();//初始为屏幕宽度
     this->setGeometry(miRPos - this->width() , rect.y() + 25, this->width(), this->height());//win标题栏高度预留25，点x用

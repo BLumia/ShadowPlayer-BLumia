@@ -8,6 +8,13 @@
 #include "ID3v2Pic.h"
 #include "FlacPic.h"
 
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+#include <MyGlobalShortCut/MyGlobalShortCut.h>
+#endif
+
+#include <QTextCodec>
+#include <QTextStream>
+
 /*
  * QFileDialog中存在内存泄漏BUG
  * 此BUG在QtCreator中同样存在……
@@ -87,6 +94,7 @@ ShadowPlayer::ShadowPlayer(QWidget *parent) :
 
     connect(playList, SIGNAL(callPlayer()), this, SLOT(callFromPlayList()));
 
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     MyGlobalShortCut *playShortcut = new MyGlobalShortCut("Ctrl+F2", this);
     connect(playShortcut,SIGNAL(activated()), this,SLOT(on_playButton_clicked()));//播放键热键
     MyGlobalShortCut *stopShortcut = new MyGlobalShortCut("Ctrl+F3", this);
@@ -106,6 +114,7 @@ ShadowPlayer::ShadowPlayer(QWidget *parent) :
     connect(mpreShortcut,SIGNAL(activated()), this,SLOT(on_playPreButton_clicked()));//上一曲热键
     MyGlobalShortCut *mnextShortcut = new MyGlobalShortCut("Media Next", this);
     connect(mnextShortcut,SIGNAL(activated()), this,SLOT(on_playNextButton_clicked()));//下一曲热键
+#endif // QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 
     skinMode = 2; //皮肤模式 0.不更改大小 1.左侧 2.全窗口 3.自动 4.动态缩放
     skinPos = 1;//背景图片位置 0.显示顶端 1.显示中间 2.显示底部
@@ -1897,10 +1906,12 @@ void ShadowPlayer::on_setJumpButton_clicked()
                            return;
                         }
 
-                        QTextCodec* codec=QTextCodec::codecForName("UTF-8");
-
                         QTextStream out(&file);
-                        out.setCodec(codec);
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+                        out.setCodec(QTextCodec::codecForName("UTF-8"));
+#else
+                        out.setEncoding(QStringConverter::Utf8);
+#endif
                         out <<QString::number(jumpingFrom)<<"\n";
                         out <<QString::number(jumpingTo);
                         file.flush();

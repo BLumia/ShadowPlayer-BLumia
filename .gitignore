@@ -1,5 +1,5 @@
 # build folder
-[Bb]uild/
+[Bb]uild*/
 
 # IDE stuff
 .vs/

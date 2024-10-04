@@ -3,7 +3,7 @@ ShadowPlayer-BLumia
 
 ## 使用前必读
 
-这是一个历史项目，出于仍在被使用的缘故而在偶然的进行维护。此项目依赖 [bass](https://www.un4seen.com/bass.html) 库，且目前仅支持 Qt 5 + Windows/MSVC 构建。出于方便起见，此仓库也放置了一些二进制文件。
+这是一个历史项目，出于仍在被使用的缘故而在偶然的进行维护。此项目依赖 [bass](https://www.un4seen.com/bass.html) 库，且目前仅支持 Windows/MSVC 构建。出于方便起见，此仓库也放置了一些二进制文件。
 
 此项目不包含任何曲库管理功能，且以后也不会包含此功能。
 
@@ -13,8 +13,11 @@ ShadowPlayer-BLumia
 
 ### 获取前置依赖
 
-- Qt 5.15.2，模块：core, gui, widgets, winextras。
+- Qt，模块：core, gui, widgets, winextras。
   - 如果懒得下载 Qt 官方的下载器/维护工具，可通过 [aqtinstall](https://github.com/miurahr/aqtinstall) 获取： `aqt install-qt windows desktop 5.15.2 win64_msvc2019_64` （在哪执行就会下载到哪儿）
+    - 构建时，需要使用 `-DPREFER_QT_5=ON` 选项指定使用 Qt 5
+  - 目前也提供实验性的 Qt 6 支持，若使用 Qt 6，则需同时获取 core5compat 模块： `aqt install-qt windows desktop 6.7.3 win64_msvc2019_64 --modules qt5compat`
+    - Qt 6 不再包含官方的 WinExtras 模块，我维护了一个可以在 Qt 6 使用的 fork 版本： [BLumia/QtWinExtras](https://github.com/BLumia/qtwinextras)
 - MSVC 2022（2019 应该也行，没试，也不打算试）
 - CMake 越新越好（作为参考，截至目前我使用的是 3.29.2）
 - bass 库
@@ -23,7 +26,7 @@ ShadowPlayer-BLumia
 
 ### 载入工程与构建
 
-如果你需要 IDE，那用 IDE 打开 `ShadowPlayer` 目录下的 `CMakeLists.txt`。恕不支持用于 qmake 的 `.pro` 文件。你需要自己确保 IDE 找得到 Qt 5.15。
+如果你需要 IDE，那用 IDE 打开 `ShadowPlayer` 目录下的 `CMakeLists.txt`。恕不支持用于 qmake 的 `.pro` 文件。你需要自己确保 IDE 找得到 Qt。
 
 对于手动命令构建，请参阅 `ShadowPlayer/compile.bat` 批处理脚本，里面包括了设置相关环境变量、构建（Release 版）以及部署的步骤。除非你计算机用户名和我一样，否则你需要修改此批处理中 `QTDIR` 指向的 Qt 所在位置。方便起见，可直接执行 `.\compile.bat help`
 

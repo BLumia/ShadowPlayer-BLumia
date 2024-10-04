@@ -14,7 +14,6 @@
 #include <QtWinExtras>//nt6
 #include <math.h>
 #include <spslider.h>
-#include <MyGlobalShortCut/MyGlobalShortCut.h>
 
 namespace Ui {
 class ShadowPlayer;

@@ -273,8 +273,9 @@ void PlayList::tableUpdate()
 
         if (i == curIndex)
         {
-            item->setBackgroundColor(QColor(128, 255, 0, 128));
-            timeItem->setBackgroundColor(QColor(128, 255, 0, 128));
+            QBrush brush(QColor(128, 255, 0, 128));
+            item->setBackground(brush);
+            timeItem->setBackground(brush);
         }
 
         ui->playListTable->setItem(i, 0, item);
@@ -691,10 +692,7 @@ void PlayList::on_listOptionButton_clicked()
 void PlayList::openFileFloder()
 {
     QFileInfo fi= QFileInfo(getSelFile());
-    QString filePath;
-    filePath=fi.filePath();
-    filePath.replace("/","\\");//将地址中的"/"替换为"\"，因为在Windows下使用的是"\"。
-    QProcess::startDetached("explorer /select, \""+filePath+"\"");//打开上面获取的目录
+    QProcess::startDetached("explorer", QStringList() << "/select," << QDir::toNativeSeparators(fi.absoluteFilePath()));
 }
 
 void PlayList::on_playListCombo_currentIndexChanged(int index)

@@ -1,10 +1,28 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.20)
 
 project(shadowplayer-blumia)
 
-find_package(Qt5 5.15.2 REQUIRED
+option (PREFER_QT_5 "Prefer to use Qt 5" OFF)
+
+if (PREFER_QT_5)
+    find_package(QT NAMES Qt5 REQUIRED COMPONENTS Core)
+else()
+    find_package(QT NAMES Qt6 REQUIRED COMPONENTS Core)
+endif()
+
+if (${QT_VERSION_MAJOR} EQUAL "5")
+    set(QT_MINIMUM_VERSION "5.15.2")
+else()
+    set(QT_MINIMUM_VERSION "6.7.3")
+endif ()
+
+find_package(Qt${QT_VERSION_MAJOR} ${QT_MINIMUM_VERSION} REQUIRED
     COMPONENTS Core Gui Widgets WinExtras
 )
+
+if (${QT_VERSION_MAJOR} EQUAL "6")
+    find_package(Qt${QT_DEFAULT_MAJOR_VERSION} ${QT_MINIMUM_VERSION} CONFIG REQUIRED Core5Compat)
+endif()
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -34,8 +52,6 @@ PRIVATE
     lrcbar.cpp lrcbar.h
     spslider.cpp spslider.h
     playlist.cpp playlist.h
-    MyGlobalShortCut/MyGlobalShortCut.cpp MyGlobalShortCut/MyGlobalShortCut.h
-    MyGlobalShortCut/MyWinEventFilter.cpp MyGlobalShortCut/MyWinEventFilter.h
     osd.cpp osd.h
     fftdisplay.cpp fftdisplay.h
     shadowlabel.cpp shadowlabel.h
@@ -52,12 +68,20 @@ PRIVATE
     ShadowPlayer.rc
 )
 
+if (${QT_VERSION_MAJOR} EQUAL "5")
+target_sources(${EXE_NAME}
+PRIVATE
+    MyGlobalShortCut/MyGlobalShortCut.cpp MyGlobalShortCut/MyGlobalShortCut.h
+    MyGlobalShortCut/MyWinEventFilter.cpp MyGlobalShortCut/MyWinEventFilter.h
+)
+endif()
+
 target_link_libraries(${EXE_NAME}
 PRIVATE
-    Qt5::Core
-    Qt5::Gui
-    Qt5::Widgets
-    Qt5::WinExtras
+    Qt${QT_VERSION_MAJOR}::Core
+    Qt${QT_VERSION_MAJOR}::Gui
+    Qt${QT_VERSION_MAJOR}::Widgets
+    Qt${QT_VERSION_MAJOR}::WinExtras
     bass.lib
     tags.lib
     bassape.lib
@@ -69,6 +93,10 @@ PRIVATE
     basswv.lib
     bass_fx.lib
 )
+
+if (${QT_VERSION_MAJOR} EQUAL "6")
+    target_link_libraries(${EXE_NAME} PRIVATE Qt6::Core5Compat)
+endif()
 
 target_include_directories(${EXE_NAME}
 PRIVATE
