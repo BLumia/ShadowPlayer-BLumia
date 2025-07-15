@@ -1,0 +1,7 @@
+# build folder
+[Bb]uild*/
+
+# IDE stuff
+.vs/
+.vscode/
+*.user
