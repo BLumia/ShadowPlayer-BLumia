@@ -27,7 +27,6 @@
   </property>
   <property name="styleSheet">
    <string notr="true">QWidget {
-	font-family: &quot;Arial&quot;, &quot;宋体&quot;, &quot;Segoe UI&quot;, &quot;微软雅黑&quot;;
 	color: black;
 }
 
@@ -128,7 +127,6 @@ QLabel:hover {
 
 QLabel#tagLabel {
 	color: white;
-	font-family: &quot;Segoe UI&quot;, &quot;宋体&quot;;
 	background: rgba(255, 255, 255, 0);
 }
 
@@ -138,7 +136,6 @@ QLabel#coverLabel{
 
 QLabel#mediaInfoLabel {
 	color: white;
-	font-family: &quot;Segoe UI&quot;, &quot;宋体&quot;;
 	background: rgba(255, 255, 255, 0);
 }
 
@@ -393,14 +390,12 @@ QSlider::add-page:vertical#offsetSlider {
 QPushButton#offsetLabel {
 	color: rgba(95, 160, 0, 90);
 	background-color: rgba(255, 255, 255, 0);
-	font-family: &quot;Segoe UI&quot;;
 	font-size :11px;
 }
 
 QPushButton:hover#offsetLabel {
 	color: rgba(95, 170, 0, 180);
 	background-color: rgba(255, 255, 255, 0);
-	font-family: &quot;Segoe UI&quot;;
 	font-size :11px;
 }</string>
   </property>
@@ -551,11 +546,6 @@ QPushButton:hover#offsetLabel {
       <width>221</width>
       <height>20</height>
      </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Segoe UI,宋体</family>
-     </font>
     </property>
     <property name="text">
      <string>你可以把音频文件拖进来哦~</string>

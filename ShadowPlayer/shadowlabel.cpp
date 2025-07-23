@@ -11,7 +11,7 @@ void ShadowLabel::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing, true);//绘图抗锯齿
-    painter.setFont(this->font());
+    //painter.setFont(this->font());//TODO: REMOVE THIS CLASS
     painter.setPen(shadowColor);//取得阴影颜色
     //绘制阴影
     switch (shadowMode) {
